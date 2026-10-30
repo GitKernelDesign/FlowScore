@@ -1,0 +1,16 @@
+# Installateurs / artefacts de build (trop lourds pour Git → utiliser les Releases)
+*.exe
+*.AppImage
+*.dmg
+*.snap
+*.msi
+
+# Node / Electron
+node_modules/
+package-lock.json
+dist/
+out/
+
+# Système
+.DS_Store
+Thumbs.db

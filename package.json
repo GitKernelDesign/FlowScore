@@ -1,0 +1,8 @@
+{
+  "name": "flowscore",
+  "version": "1.0.3",
+  "description": "Flow-Score - gestionnaire de notes pour les enseignants",
+  "author": "Flow-Score",
+  "license": "GPL-3.0",
+  "main": "main.js"
+}
