@@ -33,15 +33,21 @@
   --modal-overlay:rgba(0,0,0,0.7);
 }
 body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:linear-gradient(135deg,var(--bg-grad-1),var(--bg-grad-2));min-height:100vh;padding:20px;padding-bottom:80px;transition:background .4s}
-.container{max-width:1400px;margin:0 auto}
-header{background:linear-gradient(135deg,#40b3a2 0%,#e8a87c 100%);color:#fff;padding:25px 30px;border-radius:15px;box-shadow:0 8px 32px var(--shadow-strong);margin-bottom:30px}
-header h1{font-size:2.5em;font-weight:700;margin-bottom:5px}
-header p{font-size:1.1em;opacity:.9}
-.main-content{display:grid;grid-template-columns:300px 1fr;gap:25px}
-.left-column{display:flex;flex-direction:column;gap:5px}
-header{background:linear-gradient(135deg,#40b3a2 0%,#e8a87c 100%);color:#fff;padding:25px 30px;border-radius:15px;box-shadow:0 8px 32px var(--shadow-strong);width:100%}
-.sidebar{background:var(--surface);border-radius:15px;padding:25px;box-shadow:0 4px 20px var(--shadow);height:fit-content;max-width:100%;overflow:hidden;transition:background .4s,box-shadow .4s}
-.sidebar h2{color:#40b3a2;font-size:1.5em;margin-bottom:20px;padding-bottom:10px;border-bottom:3px solid #85cdca}
+.container{max-width:1600px;margin:0 auto}
+header.app-header{background:linear-gradient(135deg,#40b3a2 0%,#e8a87c 100%);color:#fff;padding:20px 25px;border-radius:15px;box-shadow:0 8px 32px var(--shadow-strong);margin-bottom:25px}
+header h1{font-size:2em;font-weight:700;margin-bottom:2px}
+header p{font-size:1em;opacity:.9;margin:0}
+.app-header-top{display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap}
+.header-data-actions{display:flex;gap:8px;flex-wrap:wrap}
+.header-data-actions .btn{width:auto;margin-bottom:0}
+.app-header-classes{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:15px;padding-top:15px;border-top:1px solid rgba(255,255,255,.35)}
+.class-add-inline{display:flex;gap:8px;align-items:center}
+.class-add-inline input{width:230px;padding:8px 12px;border:2px solid rgba(255,255,255,.5);border-radius:8px;font-size:.95em;background:rgba(255,255,255,.15);color:#fff;transition:all .2s}
+.class-add-inline input::placeholder{color:rgba(255,255,255,.75)}
+.class-add-inline input:focus{outline:none;border-color:#fff;background:rgba(255,255,255,.25)}
+.class-add-inline .btn{width:auto;margin-bottom:0}
+.app-header-classes>select{width:auto;padding:8px 10px;border:2px solid rgba(255,255,255,.5);border-radius:8px;font-size:.9em;background:rgba(255,255,255,.15);color:#fff;cursor:pointer}
+.app-header-classes>select option{color:#333;background:#fff}
 .section-title{font-size:1.1em;color:var(--text-muted);margin:20px 0 15px;font-weight:600}
 .form-group{margin-bottom:15px}
 .form-group label{display:block;margin-bottom:5px;font-weight:500;color:var(--text-label)}
@@ -57,80 +63,100 @@ header{background:linear-gradient(135deg,#40b3a2 0%,#e8a87c 100%);color:#fff;pad
 .btn-success{background:linear-gradient(135deg,#85cdca,#6bc8c4);color:#fff}
 .btn-success:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(133,205,202,.3)}
 .btn-small{width:auto;padding:6px 12px;font-size:.85em;margin-bottom:0}
-.classes-list{max-height:300px;overflow-y:auto}
-.class-item{padding:12px;margin-bottom:8px;background:var(--surface-alt);border-radius:8px;cursor:pointer;transition:all .3s;border-left:4px solid transparent;display:flex;align-items:center;justify-content:space-between;color:var(--text)}
-.class-item:hover{background:var(--surface-hover)}
-.class-item.active{background:linear-gradient(135deg,#85cdca,#6bc8c4);color:#fff;border-left-color:#40b3a2}
+.classes-list{display:flex;gap:8px;overflow-x:auto;flex:1;min-width:200px;padding:2px}
+.classes-list::-webkit-scrollbar{height:6px}
+.class-item{flex:none;padding:8px 8px 8px 14px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.45);border-radius:20px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:4px;color:#fff;font-size:.92em;font-weight:600;white-space:nowrap}
+.class-item:hover{background:rgba(255,255,255,.32)}
+.class-item.active{background:#fff;color:#2d8a7d;border-color:#fff}
+.class-item .action-btn{padding:2px 8px;font-size:.78em;margin-left:0;border-radius:12px}
 .main-content-area{background:var(--surface);border-radius:15px;padding:25px;box-shadow:0 4px 20px var(--shadow);max-width:100%;overflow:hidden;transition:background .4s,box-shadow .4s}
 #currentClassName,#statsClassName,#stageClassName{color:var(--text)}
-#classStatsTable td:not([class]){color:var(--text)}
-#classStatsTable{width:100%;table-layout:auto;margin-top:25px}
+#statsTab .table-container{margin-top:20px}
+#classStatsTable{width:100%;table-layout:auto;margin-top:0}
+#classStatsTable td{color:var(--text)}
 #classStatsTable th:first-child,#classStatsTable td:first-child{text-align:left;padding-left:15px}
+#classStatsTable th.sortable{cursor:pointer;user-select:none}
+#classStatsTable th.sortable:hover{filter:brightness(1.08)}
 .tabs{display:flex;gap:10px;margin-bottom:25px;border-bottom:2px solid var(--border);flex-wrap:wrap}
 .tab{padding:12px 25px;cursor:pointer;border:none;background:transparent;font-size:1.1em;font-weight:600;color:var(--text-muted);transition:all .3s;border-bottom:3px solid transparent}
 .tab:hover{color:#40b3a2}
 .tab.active{color:#40b3a2;border-bottom-color:#40b3a2}
+.subject-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-top:18px;border-bottom:2px solid var(--border)}
+.subject-tab{padding:10px 18px;cursor:pointer;border:none;background:transparent;font-size:1em;font-weight:600;color:var(--text-muted);border-bottom:3px solid transparent;display:flex;align-items:center;gap:7px;transition:all .2s;font-family:inherit}
+.subject-tab:hover{color:#40b3a2}
+.subject-tab.active{color:#40b3a2;border-bottom-color:#40b3a2}
+.subject-tab .subject-dot{margin-right:0}
 .tab-content{display:none;overflow:visible}
 .tab-content.active{display:block;overflow:visible}
-table{width:max-content;table-layout:fixed;margin-top:50px}
-th,td{padding:12px 8px;text-align:center;border:1px solid var(--border);min-width:60px;white-space:nowrap;box-sizing:border-box}
-th{background:linear-gradient(135deg,#40b3a2,#64b5a0);color:#fff;font-weight:600;height:48px;line-height:24px;box-sizing:border-box}
-th.pupil-name{min-width:140px;text-align:left;padding:8px 15px 8px 8px;font-size:.8em;background:linear-gradient(135deg,#40b3a2,#64b5a0);color:#fff;font-weight:600;height:48px;line-height:18px;box-sizing:border-box;white-space:normal;word-wrap:break-word;}
-th.assignment-header{background:linear-gradient(135deg,#85cdca,#6bc8c4);min-width:100px;font-size:.85em;cursor:pointer;position:relative;height:48px;line-height:24px;box-sizing:border-box}
-th.assignment-header:hover{background:linear-gradient(135deg,#6bc8c4,#85cdca)}
-th.average-header{background:linear-gradient(135deg,#c38d9d,#a87cb0);min-width:100px;height:48px;line-height:24px;box-sizing:border-box}
-tr{height:48px}
-tr:nth-child(even){background:var(--surface-alt)}
-tr:hover{background:var(--surface-hover)}
-td.pupil-name{text-align:left;padding:6px 15px 6px 8px;font-weight:600;color:var(--text);font-size:.8em;height:48px;line-height:18px;box-sizing:border-box;white-space:normal;word-wrap:break-word;max-width:140px}
-td.grade-cell{font-weight:500;min-width:80px;cursor:pointer;position:relative;height:48px;line-height:24px;box-sizing:border-box}
-td.grade-cell.editable:hover{background:rgba(64,179,162,0.1);box-shadow:0 0 0 2px rgba(64,179,162,0.3)}
-td.average-cell{font-weight:700;font-size:1.1em;color:#40b3a2;background:rgba(133,205,202,0.1);min-width:100px;height:48px;line-height:24px;box-sizing:border-box}
+/* ===== Tableaux : conteneurs scrollables avec en-tête gelé ===== */
+table{border-collapse:separate;border-spacing:0}
+th,td{padding:12px 8px;text-align:center;border-bottom:1px solid var(--border);border-right:1px solid var(--border);box-sizing:border-box;color:var(--text)}
+th{background:linear-gradient(135deg,#40b3a2,#64b5a0);color:#fff;font-weight:600}
+tbody tr:nth-child(even) td{background:var(--surface-alt)}
+tbody tr:hover td{background:var(--surface-hover)}
+.table-container{display:block;width:100%;overflow-x:auto;overflow-y:visible;max-height:none;-webkit-overflow-scrolling:touch;border:1px solid var(--border);border-radius:8px;background:var(--surface)}
+.table-container thead th{position:sticky;top:0;z-index:5}
 
-/* Structure avec colonnes fixes + scrollable */
-.pupils-table-wrapper{display:flex;width:100%;max-width:100%;overflow:visible;position:relative;border:1px solid var(--border);border-radius:8px;background:var(--surface)}
-.pupils-table-fixed-left{width:140px;flex:none;border-right:1px solid var(--border);background:var(--surface)}
-.pupils-table-scrollable-container{flex:1;overflow-x:auto;-webkit-overflow-scrolling:touch;background:var(--surface);padding-bottom:14px;margin-bottom:-14px;position:relative}
-.pupils-table-scrollable{width:auto;min-width:100%;border-left:none;border-right:none;background:transparent}
-.pupils-table-scrollable th, .pupils-table-scrollable td {border-left:none;border-right:none}
-.pupils-table-fixed-right{width:100px;flex:none;border-left:1px solid var(--border);background:var(--surface)}
-.pupils-table-fixed-right th.average-header{position:sticky;right:0;z-index:10}
-.pupils-table-fixed-right td.average-cell{position:sticky;right:0;z-index:10}
+/* ===== Grille de notes : un seul tableau, gel haut / gauche / droite / pied ===== */
+.table-toolbar{display:flex;gap:10px;justify-content:flex-end;margin-top:15px;flex-wrap:wrap}
+.table-scroll{overflow-x:auto;overflow-y:visible;max-height:none;-webkit-overflow-scrolling:touch;border:1px solid var(--border);border-radius:8px;background:var(--surface);margin-top:10px;transition:box-shadow .2s}
+.grades-table{width:max-content;min-width:100%;table-layout:auto;margin-top:0}
+.grades-table th,.grades-table td{min-width:70px;white-space:nowrap;overflow:hidden}
+.grades-table thead th{position:sticky;top:0;z-index:5;height:48px;line-height:24px;overflow:visible}
+.grades-table th.assignment-header{position:sticky;top:0;z-index:5;background:linear-gradient(135deg,#85cdca,#6bc8c4);min-width:100px;cursor:pointer}
+.grades-table th.assignment-header:hover{background:linear-gradient(135deg,#6bc8c4,#85cdca)}
+.assignment-label{display:block;max-width:170px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin:0 auto}
+.coef-badge{display:inline-block;background:rgba(255,255,255,.4);border-radius:8px;padding:0 6px;font-size:.78em;margin-left:4px;font-weight:700}
+.grades-table th.sortable{cursor:pointer;user-select:none}
+.grades-table th.sortable:hover{filter:brightness(1.08)}
+.sort-arrow{font-size:.7em;margin-left:4px}
+.grades-table th.col-left,.grades-table td.col-left{position:sticky;left:0;text-align:left;min-width:150px;max-width:150px}
+.grades-table thead th.col-left{z-index:8}
+.grades-table th.col-right,.grades-table td.col-right{position:sticky;right:0;min-width:110px;max-width:110px}
+.grades-table thead th.col-right{background:linear-gradient(135deg,#c38d9d,#a87cb0);z-index:8}
+.grades-table tbody td.col-left{background:var(--surface);z-index:2;font-weight:600;color:var(--text);white-space:normal;word-wrap:break-word}
+.grades-table tbody tr:nth-child(even) td.col-left{background:var(--surface-alt)}
+.grades-table tbody tr:hover td.col-left{background:var(--surface-hover)}
+.grades-table tbody td.col-right{background:rgba(133,205,202,.1);z-index:2}
+.grades-table tbody tr:nth-child(even) td.col-right{background:rgba(133,205,202,.18)}
+.grades-table tbody tr:hover td.col-right{background:rgba(133,205,202,.3)}
+.grades-table tfoot td{position:sticky;bottom:0;background:var(--surface-alt);font-weight:700;z-index:4;border-top:2px solid var(--border)}
+.grades-table tfoot td.col-left{left:0;z-index:7}
+.grades-table tfoot td.col-right{right:0;z-index:7;background:rgba(195,141,157,.18)}
+.grades-table tbody tr.selected td{background:rgba(64,179,162,.16)}
+.grades-table tbody tr.selected td.col-left{background:rgba(64,179,162,.28)}
+.grades-table tbody tr.selected td.col-right{background:rgba(64,179,162,.34)}
+td.grade-cell{font-weight:500;min-width:80px;cursor:pointer;position:relative;overflow:visible}
+td.grade-cell.editable:hover{background:rgba(64,179,162,.1);box-shadow:inset 0 0 0 2px rgba(64,179,162,.3)}
+td.average-cell{font-weight:700;font-size:1.05em;color:#40b3a2}
+.avg-bar{display:block;height:4px;background:var(--surface-hover);border-radius:2px;margin-top:5px;overflow:hidden}
+.avg-bar>span{display:block;height:100%;border-radius:2px;transition:width .3s}
+.col-resizer{position:absolute;top:0;right:0;width:8px;height:100%;cursor:col-resize;z-index:3}
+.col-resizer:hover{background:rgba(255,255,255,.45)}
+/* survol d'une colonne entière */
+.grades-table thead th.col-hover{filter:brightness(1.12)}
+.grades-table tbody tr td.col-hover{background:rgba(64,179,162,.10)}
+.grades-table tbody tr td.col-left.col-hover{background:rgba(64,179,162,.22)}
+.grades-table tbody tr td.col-right.col-hover{background:rgba(64,179,162,.3)}
+/* scrollbars des conteneurs de tableaux */
+.table-scroll::-webkit-scrollbar,.table-container::-webkit-scrollbar{width:10px;height:10px}
+.table-scroll::-webkit-scrollbar-track,.table-container::-webkit-scrollbar-track{background:var(--surface-alt)}
+.table-scroll::-webkit-scrollbar-thumb,.table-container::-webkit-scrollbar-thumb{background:linear-gradient(135deg,#85cdca,#6bc8c4);border-radius:10px}
+.table-scroll::-webkit-scrollbar-thumb:hover,.table-container::-webkit-scrollbar-thumb:hover{background:linear-gradient(135deg,#40b3a2,#64b5a0)}
 
-/* Alignement des lignes - hauteur fixe et line-height */
-.pupils-table-fixed-left tr,
-.pupils-table-scrollable tr,
-.pupils-table-fixed-right tr {
-    height: 48px;
-}
-.pupils-table-fixed-left td,
-.pupils-table-scrollable td,
-.pupils-table-fixed-right td {
-    height: 48px;
-    line-height: 24px;
-    box-sizing: border-box;
-}
-
-/* Assurer que les cellules couvrent la scrollbar */
-.pupils-table-fixed-left tr:last-child td,
-.pupils-table-scrollable tr:last-child td,
-.pupils-table-fixed-right tr:last-child td {
-    position: relative;
-    z-index: 1;
-    background: var(--surface);
-}
-
-/* Style de la barre de défilement horizontale pour les colonnes de notes */
-.pupils-table-scrollable-container::-webkit-scrollbar{height:10px}
-.pupils-table-scrollable-container::-webkit-scrollbar-track{background:var(--surface-alt);border-radius:0}
-.pupils-table-scrollable-container::-webkit-scrollbar-thumb{background:linear-gradient(135deg,#85cdca,#6bc8c4);border-radius:10px}
-.pupils-table-scrollable-container::-webkit-scrollbar-thumb:hover{background:linear-gradient(135deg,#40b3a2,#64b5a0)}
+/* ===== Mode compact ===== */
+body.compact th,body.compact td{padding:6px 8px}
+body.compact .grades-table th,body.compact .grades-table td{padding:4px 5px;font-size:.85em;min-width:55px}
+body.compact .grades-table thead th{height:34px;line-height:20px}
+body.compact .grades-table th.col-left,body.compact .grades-table td.col-left{min-width:130px;max-width:130px}
+body.compact .grades-table th.col-right,body.compact .grades-table td.col-right{min-width:92px;max-width:92px}
+body.compact .avg-bar{display:none}
+body.compact .stage-table textarea{min-height:38px}
 .grade-good{color:#28a745;font-weight:600}
 .grade-medium{color:#ffc107;font-weight:600}
 .grade-bad{color:#dc3545;font-weight:600}
 .empty-cell{color:#ccc;font-style:italic;cursor:pointer}
 .special-value{font-weight:700;text-transform:uppercase;font-size:0.9em;cursor:pointer}
-#assignmentsManagement{display:none!important;}
 .special-value.ABS{color:#6c757d;background-color:rgba(108,117,125,0.1)}
 .special-value.NN{color:#17a2b8;background-color:rgba(23,162,184,0.1)}
 .special-value.NR{color:#dc3545;background-color:rgba(220,53,69,0.1)}
@@ -160,6 +186,23 @@ td.average-cell{font-weight:700;font-size:1.1em;color:#40b3a2;background:rgba(13
 .pupils-add-form{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap}
 .pupils-add-form .form-group{flex:1;min-width:200px}
 .pupils-add-form .btn{width:auto;margin-top:28px;min-width:120px}
+.subjects-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.subject-chip{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;background:var(--surface-alt);border:1px solid var(--border);border-radius:20px;font-size:.9em;color:var(--text)}
+.subject-chip .dot{width:10px;height:10px;border-radius:50%;flex:none}
+.subject-chip button{border:none;background:transparent;cursor:pointer;color:var(--text-muted);font-size:.95em;padding:0 2px;line-height:1}
+.subject-chip button:hover{color:#dc3545}
+.subject-dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:middle;flex:none}
+.subject-block{margin-bottom:28px}
+.subject-block:last-child{margin-bottom:0}
+.subject-block-head{display:flex;align-items:center;gap:8px;margin:18px 0 8px;font-weight:700;font-size:1.05em;color:var(--text)}
+.subject-block-head .subject-dot{margin-right:0}
+.subject-coef-badge{background:rgba(64,179,162,.15);color:#40b3a2;border-radius:8px;padding:2px 8px;font-size:.8em;font-weight:700}
+.subject-coef-edit{border:none;background:transparent;cursor:pointer;color:var(--text-muted);font-size:.9em;padding:2px 6px;border-radius:5px}
+.subject-coef-edit:hover{background:var(--surface-hover);color:#40b3a2}
+.recap-block .subject-block-head{color:#c38d9d}
+.subject-col-header{background:linear-gradient(135deg,#85cdca,#6bc8c4)}
+.subject-avg-cell{min-width:110px}
+#gradesTables .grades-table{margin-top:0}
 .file-input-container{margin:20px 0;text-align:center}
 .file-input-label{display:inline-block;padding:15px 30px;background:linear-gradient(135deg,#85cdca,#6bc8c4);color:#fff;border-radius:8px;cursor:pointer;font-weight:600;transition:all .3s;font-size:1.1em}
 .rename-btn{margin-left:8px;cursor:pointer;color:#40b3a2;opacity:0.7;transition:all .2s}
@@ -177,25 +220,29 @@ td.average-cell{font-weight:700;font-size:1.1em;color:#40b3a2;background:rgba(13
 ::-webkit-scrollbar-track{background:var(--scrollbar-track);border-radius:10px}
 ::-webkit-scrollbar-thumb{background:linear-gradient(135deg,#40b3a2,#64b5a0);border-radius:10px}
 ::-webkit-scrollbar-thumb:hover{background:linear-gradient(135deg,#64b5a0,#40b3a2)}
-@media (max-width:968px){.main-content{grid-template-columns:1fr}.sidebar{margin-bottom:25px}th,td{padding:8px 5px;font-size:.85em;min-width:50px}th.pupil-name{min-width:120px}th.assignment-header{min-width:80px;font-size:.8em}td.grade-cell{min-width:50px}.pupils-add-form{flex-direction:column}.pupils-add-form .btn{margin-top:0}}
-@media (max-width:600px){body{padding:10px}header{padding:15px}header h1{font-size:1.8em}.btn{padding:10px}th,td{padding:6px 3px;font-size:.8em;min-width:45px}th.pupil-name{min-width:100px}th.assignment-header{min-width:60px;font-size:.75em}td.grade-cell{min-width:45px}.tab{padding:8px 15px;font-size:.95em}}
-.table-container{display:block;width:100%;min-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+@media (max-width:968px){.app-header-classes{flex-direction:column;align-items:stretch}.classes-list{width:100%}.grades-table th,.grades-table td{padding:8px 5px;font-size:.85em;min-width:50px}.grades-table th.col-left,.grades-table td.col-left{min-width:120px;max-width:120px}.grades-table th.assignment-header{min-width:80px;font-size:.8em}td.grade-cell{min-width:50px}.table-container,.table-scroll{max-height:none}.pupils-add-form{flex-direction:column}.pupils-add-form .btn{margin-top:0}}
+@media (max-width:600px){body{padding:10px}header{padding:15px}header h1{font-size:1.8em}.btn{padding:10px}.app-header-top{flex-direction:column;align-items:flex-start}.class-add-inline{width:100%}.class-add-inline input{flex:1;width:auto}.grades-table th,.grades-table td{padding:6px 3px;font-size:.8em;min-width:45px}.grades-table th.col-left,.grades-table td.col-left{min-width:100px;max-width:100px}.grades-table th.assignment-header{min-width:60px;font-size:.75em}td.grade-cell{min-width:45px}.tab{padding:8px 15px;font-size:.95em}.table-container,.table-scroll{max-height:none}}
 .devoir-selector{display:flex;gap:10px;align-items:flex-end}
 .devoir-selector .form-group{flex:1}
 #pupilsContent, #statsData, #stageData {overflow: visible !important; width: 100%;}
 
 /* Styles pour le suivi de stage */
-.stage-table{width:100%;border-collapse:collapse;margin-top:20px;table-layout:fixed}
-.stage-table th,.stage-table td{padding:10px;text-align:left;border:1px solid var(--border);vertical-align:middle}
+.stage-table{width:100%;margin-top:0;table-layout:auto}
+.stage-table th,.stage-table td{padding:10px;text-align:left;border-bottom:1px solid var(--border);border-right:1px solid var(--border);vertical-align:middle}
 .stage-table th{background:linear-gradient(135deg,#40b3a2,#64b5a0);color:#fff;font-weight:600;height:48px}
-.stage-table th.pupil-col{width:200px}
-.stage-table th.status-col{width:180px}
-.stage-table th.convention-col{width:140px;text-align:center}
-.stage-table th.comment-col{width:auto}
-.stage-table td.pupil-cell{font-weight:600;color:var(--text);font-size:.9em}
+.stage-table th.pupil-col{width:200px;min-width:150px}
+.stage-table th.status-col{width:180px;min-width:150px}
+.stage-table th.convention-col{width:140px;min-width:120px;text-align:center}
+.stage-table th.comment-col{width:auto;min-width:220px}
+.stage-table td.pupil-cell{font-weight:600;color:var(--text);font-size:.9em;border-left:4px solid transparent}
+.stage-table tbody tr.status-active td.pupil-cell{border-left-color:#40b3a2}
+.stage-table tbody tr.status-difficulty td.pupil-cell{border-left-color:#d49668;background:rgba(232,168,124,.08)}
+.stage-table tbody tr.status-found td.pupil-cell{border-left-color:#28a745;background:rgba(40,167,69,.08)}
+.stage-table tbody tr.status-none td.pupil-cell{border-left-color:#adb5bd}
+.stage-table tbody tr.status-maladie td.pupil-cell{border-left-color:#6f42c1;background:rgba(111,66,193,.08)}
 .stage-table select{width:100%;padding:8px;border:2px solid var(--border);border-radius:6px;background:var(--surface);color:var(--text);font-size:.95em;cursor:pointer}
 .stage-table select:focus{outline:none;border-color:#40b3a2;box-shadow:0 0 0 3px rgba(64,179,162,.1)}
-.stage-table textarea{width:100%;min-height:60px;padding:8px;border:2px solid var(--border);border-radius:6px;background:var(--surface);color:var(--text);font-size:.9em;resize:vertical;font-family:inherit}
+.stage-table textarea{width:100%;min-height:120px;padding:8px;border:2px solid var(--border);border-radius:6px;background:var(--surface);color:var(--text);font-size:.9em;resize:vertical;font-family:inherit}
 .stage-table textarea:focus{outline:none;border-color:#40b3a2;box-shadow:0 0 0 3px rgba(64,179,162,.1)}
 .convention-toggle{display:flex;align-items:center;justify-content:center;gap:8px}
 .convention-toggle input{width:20px;height:20px;cursor:pointer;accent-color:#40b3a2}
@@ -211,6 +258,7 @@ td.average-cell{font-weight:700;font-size:1.1em;color:#40b3a2;background:rgba(13
 .stage-summary-card.none .count{color:#6c757d}
 .stage-summary-card.found .count{color:#40b3a2}
 .stage-summary-card.convention .count{color:#17a2b8}
+.stage-summary-card.maladie .count{color:#6f42c1}
 
 /* Styles pour la gestion des devoirs */
 .assignments-section{margin-top:20px;padding-top:20px;border-top:2px solid var(--border)}
@@ -237,35 +285,29 @@ option{background:var(--surface);color:var(--text)}
 </head>
 <body>
 <div class="container">
-<div class="main-content">
-<div class="left-column">
-<header>
-  <h1>Flow-Score</h1>
-  <p>Gestionnaire de notations</p>
-</header>
-<aside class="sidebar">
-  <h2>Classes</h2>
-  <div class="form-group">
-    <label for="newClassName">Nouvelle classe</label>
-    <input type="text" id="newClassName" placeholder="+ S1, T1 pour la période">
+<header class="app-header">
+  <div class="app-header-top">
+    <div class="app-title">
+      <h1>Flow-Score</h1>
+      <p>Gestionnaire de notations</p>
+    </div>
+    <div class="header-data-actions">
+      <button class="btn btn-success btn-small" onclick="exportJSON()">Exporter JSON</button>
+      <button class="btn btn-secondary btn-small" onclick="showImportModal()">Importer JSON</button>
+      <button class="btn btn-danger btn-small" onclick="confirmReset()">Réinitialiser</button>
+    </div>
   </div>
-  <button class="btn btn-primary" onclick="addClass()">Ajouter la classe</button>
-  <div class="form-group">
-    <label for="periodFilter">Filtrer par période</label>
-    <select id="periodFilter" onchange="filterClassesByPeriod()">
+  <div class="app-header-classes">
+    <div class="class-add-inline">
+      <input type="text" id="newClassName" placeholder="Nouvelle classe (+ S1, T1 pour la période)">
+      <button class="btn btn-primary btn-small" onclick="addClass()">Ajouter</button>
+    </div>
+    <select id="periodFilter" onchange="filterClassesByPeriod()" title="Filtrer par période">
       <option value="all">Toutes les périodes</option>
     </select>
+    <div class="classes-list" id="classesList"></div>
   </div>
-  <div class="section-title">Vos classes</div>
-  <div class="classes-list" id="classesList"></div>
-  <div class="section-title">Gestion des donnees</div>
-  <div class="import-export-section">
-    <button class="btn btn-success" onclick="exportJSON()">Exporter JSON</button>
-    <button class="btn btn-secondary" onclick="showImportModal()">Importer fichier JSON</button>
-    <button class="btn btn-danger" onclick="confirmReset()">Reinitialiser</button>
-  </div>
-</aside>
-</div>
+</header>
 
 <main class="main-content-area">
 <div class="tabs">
@@ -299,34 +341,37 @@ option{background:var(--surface);color:var(--text)}
       <!-- Section pour ajouter devoirs -->
       <div class="pupils-add-form" style="margin-top: 15px; border-top: 2px solid var(--border); padding-top: 15px;">
         <div class="form-group">
+          <label for="assignmentSubject">Matière du devoir</label>
+          <select id="assignmentSubject"></select>
+        </div>
+        <div class="form-group">
           <label for="newAssignmentName">Nouveau devoir</label>
-          <input type="text" id="newAssignmentName" placeholder="Ex: Contrôle Maths, TP Physique">
+          <input type="text" id="newAssignmentName" placeholder="Ex: Contrôle chapitre 3, TP Physique">
         </div>
         <button class="btn btn-success" onclick="addAssignment()">Ajouter devoir</button>
       </div>
 
-      <!-- Tableau des eleves et notes -->
-      <div class="pupils-table-wrapper">
-        <table class="pupils-table-fixed-left">
-          <thead><tr><th class="pupil-name">Elève</th></tr></thead>
-          <tbody id="pupilsFixedLeftBody"></tbody>
-        </table>
-        <div class="pupils-table-scrollable-container">
-          <table class="pupils-table-scrollable">
-            <thead id="pupilsAssignmentsHead"><tr></tr></thead>
-            <tbody id="pupilsAssignmentsBody"></tbody>
-          </table>
+      <!-- Section matieres -->
+      <div class="pupils-add-form" style="margin-top: 10px;">
+        <div class="form-group">
+          <label for="newSubjectName">Nouvelle matière</label>
+          <input type="text" id="newSubjectName" placeholder="Ex: Mathématiques, Français, Physique">
         </div>
-        <table class="pupils-table-fixed-right">
-          <thead><tr><th class="average-header">Moyenne</th></tr></thead>
-          <tbody id="pupilsFixedRightBody"></tbody>
-        </table>
+        <button class="btn btn-secondary" onclick="addSubject()">Ajouter matière</button>
+      </div>
+      <div id="subjectsManagement" style="margin-top: 10px;">
+        <div class="section-title">Matières de la classe</div>
+        <div class="subjects-list" id="subjectsList"></div>
       </div>
 
-      <!-- Section de gestion des devoirs -->
-      <div id="assignmentsManagement" style="display: none; margin-top: 15px;">
-        <div class="section-title">Gestion des devoirs</div>
-        <div class="assignments-list" id="assignmentsList"></div>
+      <!-- Tableau des eleves et notes : tableau unique, en-tête et colonnes gelées -->
+      <div class="table-toolbar">
+        <button class="btn btn-secondary btn-small" onclick="exportCSV()" data-tooltip="Exporter la grille en CSV (compatible Excel FR)">Exporter CSV</button>
+        <button class="btn btn-secondary btn-small" id="compactToggle" onclick="toggleCompact()" data-tooltip="Basculer entre affichage confort et compact">Mode compact</button>
+      </div>
+      <div class="subject-tabs" id="subjectTabs"></div>
+      <div class="table-scroll" id="gradesScroll">
+        <div id="gradesTables"></div>
       </div>
     </div>
   </div>
@@ -355,7 +400,13 @@ option{background:var(--surface);color:var(--text)}
       </div>
       <div class="table-container">
         <table id="classStatsTable">
-          <thead><tr><th>Eleve</th><th>Moyenne /20</th><th>Nombre notes</th><th>Meilleure</th><th>Pire</th></tr></thead>
+          <thead><tr>
+            <th class="sortable" data-key="name" onclick="toggleStatsSort('name')">Élève <span class="sort-arrow"></span></th>
+            <th class="sortable" data-key="avg" onclick="toggleStatsSort('avg')">Moyenne /20 <span class="sort-arrow"></span></th>
+            <th class="sortable" data-key="count" onclick="toggleStatsSort('count')">Nombre de notes <span class="sort-arrow"></span></th>
+            <th class="sortable" data-key="best" onclick="toggleStatsSort('best')">Meilleure <span class="sort-arrow"></span></th>
+            <th class="sortable" data-key="worst" onclick="toggleStatsSort('worst')">Pire <span class="sort-arrow"></span></th>
+          </tr></thead>
           <tbody id="classStatsTableBody"></tbody>
         </table>
       </div>
@@ -390,7 +441,6 @@ option{background:var(--surface);color:var(--text)}
   </div>
 </div>
 </main>
-</div>
 
 <!-- Assignment Manage Modal -->
 <div id="assignmentModal" class="modal">
@@ -401,6 +451,10 @@ option{background:var(--surface);color:var(--text)}
       <div class="form-group">
         <label for="editAssignmentName">Nom du devoir</label>
         <input type="text" id="editAssignmentName" placeholder="Nouveau nom du devoir">
+      </div>
+      <div class="form-group">
+        <label for="editAssignmentSubject">Matière</label>
+        <select id="editAssignmentSubject"></select>
       </div>
       <div class="form-group">
         <label for="editAssignmentCoef">Coefficient (appliqué à tous les élèves)</label>
@@ -552,6 +606,13 @@ function loadData() {
         if (!data.classes[classId].assignments) {
           data.classes[classId].assignments = [];
         }
+        if (!data.classes[classId].subjects) {
+          data.classes[classId].subjects = [];
+        }
+        if (!data.classes[classId].subjectCoefs) {
+          data.classes[classId].subjectCoefs = {};
+        }
+        data.classes[classId].assignments.forEach(a => { if (a.subject === undefined) a.subject = ""; });
         // Migration: s'assurer que chaque eleve a un suivi de stage
         const pupils = data.classes[classId].pupils || {};
         for (const pupilId in pupils) {
@@ -711,271 +772,643 @@ function renderPupils() {
   const currentClass = data.classes[data.currentClass];
   document.getElementById("currentClassName").textContent = "Classe: " + currentClass.name;
 
-  // Afficher la section de gestion des devoirs si il y a des devoirs
-  const assignmentsManagement = document.getElementById("assignmentsManagement");
-  if (currentClass.assignments && currentClass.assignments.length > 0) {
-    assignmentsManagement.style.display = "block";
-    renderAssignmentsList();
-  } else {
-    assignmentsManagement.style.display = "none";
-  }
-
-  // Collecter tous les devoirs (uniquement depuis class.assignments)
+  // Devoirs triés par date de création (plus anciens à gauche)
   const allAssignments = [];
   const assignmentMap = {};
   const assignmentDates = {};
+  const subjectByAssignment = {};
   const pupils = currentClass.pupils || {};
 
-  // Ajouter les devoirs definis au niveau de la classe avec leur date de creation
   if (currentClass.assignments) {
-    currentClass.assignments.forEach((assignment, index) => {
+    currentClass.assignments.forEach((assignment) => {
       if (!assignmentMap[assignment.name]) {
         assignmentMap[assignment.name] = allAssignments.length;
         allAssignments.push(assignment.name);
         assignmentDates[assignment.name] = new Date(assignment.createdAt).getTime();
+        subjectByAssignment[assignment.name] = assignment.subject || "";
       }
     });
   }
+  allAssignments.sort((a, b) => (assignmentDates[a] || 0) - (assignmentDates[b] || 0));
+  allAssignments.forEach((assignment, index) => { assignmentMap[assignment] = index; });
 
-  // Trier les devoirs par date de creation (les plus anciens en premier, de gauche a droite)
-  allAssignments.sort((a, b) => {
-    const dateA = assignmentDates[a] || 0;
-    const dateB = assignmentDates[b] || 0;
-    return dateA - dateB;
-  });
+  const subjectCoefs = currentClass.subjectCoefs || {};
+  const subjMap = {};
+  allAssignments.forEach(a => { subjMap[a] = subjectByAssignment[a] || ""; });
 
-  // Reconstruire assignmentMap avec les nouveaux indices
-  allAssignments.forEach((assignment, index) => {
-    assignmentMap[assignment] = index;
-  });
-
-  // Remplir le header des devoirs (tableau scrollable)
-  const assignmentsHead = document.getElementById("pupilsAssignmentsHead");
-  const headRow = assignmentsHead.querySelector("tr");
-  headRow.innerHTML = "";
-  allAssignments.forEach((assignment, index) => {
-    const assignmentHeader = document.createElement("th");
-    assignmentHeader.className = "assignment-header";
-    // Afficher le nom du devoir au lieu de "Devoir X"
-    const displayName = "Note " + (index + 1);
-    assignmentHeader.textContent = displayName;
-    assignmentHeader.setAttribute("data-tooltip", assignment);
-    assignmentHeader.onclick = (e) => {
-      e.stopPropagation();
-      showAssignmentModal(index, assignment);
-    };
-    headRow.appendChild(assignmentHeader);
-  });
-
-  // Remplir les tableaux
-  const leftBody = document.getElementById("pupilsFixedLeftBody");
-  const assignmentsBody = document.getElementById("pupilsAssignmentsBody");
-  const rightBody = document.getElementById("pupilsFixedRightBody");
-
-  leftBody.innerHTML = "";
-  assignmentsBody.innerHTML = "";
-  rightBody.innerHTML = "";
-
-  if (Object.keys(pupils).length === 0) {
-    const emptyRowLeft = document.createElement("tr");
-    const emptyCellLeft = document.createElement("td");
-    emptyCellLeft.textContent = "";
-    emptyCellLeft.style.height = "50px";
-    emptyRowLeft.appendChild(emptyCellLeft);
-    leftBody.appendChild(emptyRowLeft);
-
-    assignmentsBody.innerHTML = '<tr><td colspan="100" style="text-align:center;color:#999;padding:20px">Aucun eleve - ajoutez en un</td></tr>';
-
-    const emptyRowRight = document.createElement("tr");
-    const emptyCellRight = document.createElement("td");
-    emptyCellRight.textContent = "";
-    emptyCellRight.style.height = "50px";
-    emptyRowRight.appendChild(emptyCellRight);
-    rightBody.appendChild(emptyRowRight);
-    return;
+  // Coefficient de chaque devoir (lu sur la première note trouvée)
+  const coefByAssignment = {};
+  for (const pid in pupils) {
+    (pupils[pid].grades || []).forEach(g => {
+      if (coefByAssignment[g.subject] === undefined) coefByAssignment[g.subject] = g.coefficient || 1;
+    });
   }
 
-  let rowIndex = 0;
-  for (const pupilId in pupils) {
-    const pupil = pupils[pupilId];
-    const pupilGradesMap = {};
+  // Groupes = matières (dans l'ordre de subjects) ayant des devoirs, puis "Sans matière"
+  const groups = [];
+  currentSubjects().forEach(s => {
+    if (allAssignments.some(a => (subjectByAssignment[a] || "") === s)) groups.push(s);
+  });
+  if (allAssignments.some(a => !subjectByAssignment[a])) groups.push("");
 
-    // Initialiser toutes les notes de l'eleve avec les devoirs de la classe
-    if (pupil.grades) {
-      pupil.grades.forEach(grade => {
-        const subject = grade.subject || "Non specifie";
-        // Conserver la note originale avec ses propriétés
-        if (!pupilGradesMap[subject]) pupilGradesMap[subject] = [];
-        pupilGradesMap[subject].push(grade);
-      });
+  // Onglets : un par matière + onglet récapitulatif
+  const recapKey = "__recap__";
+  const tabKeys = groups.length > 0 ? groups.concat([recapKey]) : [];
+  if (tabKeys.indexOf(activeSubjectTab) === -1) activeSubjectTab = tabKeys[0] || null;
+
+  // Moyennes par élève : par matière + moyenne générale pondérée par les coefs matières
+  const pupilIds = Object.keys(pupils);
+  const statsByPupil = {};
+  pupilIds.forEach(pid => {
+    statsByPupil[pid] = computePupilAverages(pupils[pid], subjMap, subjectCoefs, allAssignments);
+  });
+
+  // Tri global des élèves (appliqué à tous les tableaux)
+  if (gradesSort.key === "name") {
+    pupilIds.sort((a, b) => pupils[a].name.localeCompare(pupils[b].name, "fr") * gradesSort.dir);
+  } else if (gradesSort.key === "average") {
+    pupilIds.sort((a, b) => (statsByPupil[a].general - statsByPupil[b].general) * gradesSort.dir);
+  }
+
+  // ---- Rendu : un tableau par matière + un tableau récapitulatif ----
+  const container = document.getElementById("gradesTables");
+  container.innerHTML = "";
+
+  if (pupilIds.length === 0) {
+    container.innerHTML = '<p style="text-align:center;color:#999;padding:20px">Aucun élève — ajoutez-en un ci-dessus</p>';
+  } else if (groups.length === 0) {
+    container.innerHTML = '<p style="text-align:center;color:#999;padding:20px">Aucun devoir — ajoutez une matière et un devoir ci-dessus</p>';
+  }
+
+  // Barre d'onglets : un onglet par matière + "Récapitulatif"
+  const tabsBar = document.getElementById("subjectTabs");
+  tabsBar.innerHTML = "";
+  tabKeys.forEach(k => {
+    const btn = document.createElement("button");
+    btn.className = "subject-tab" + (k === activeSubjectTab ? " active" : "");
+    if (k === recapKey) {
+      btn.textContent = "Récapitulatif";
+    } else {
+      const dot = document.createElement("span");
+      dot.className = "subject-dot";
+      dot.style.background = k ? subjectColor(k) : "#adb5bd";
+      btn.appendChild(dot);
+      btn.appendChild(document.createTextNode((k || "Sans matière") + (k ? " ×" + (subjectCoefs[k] || 1) : "")));
     }
+    btn.onclick = () => {
+      activeSubjectTab = k;
+      document.querySelectorAll("#subjectTabs .subject-tab").forEach(t => t.classList.remove("active"));
+      btn.classList.add("active");
+      applySubjectTabVisibility();
+    };
+    tabsBar.appendChild(btn);
+  });
 
-    // Ligne pour le tableau de gauche (Élève)
-    const leftRow = document.createElement("tr");
-    const nameCell = document.createElement("td");
-    nameCell.className = "pupil-name";
-    nameCell.innerHTML = pupil.name + '<span class="rename-btn" onclick="event.stopPropagation(); showRenamePupilModal(\'' + pupilId + '\', \'' + pupil.name + '\')" title="Renommer">&#9998;</span>';
-    leftRow.appendChild(nameCell);
-    leftBody.appendChild(leftRow);
+  function avgCellHtml(avg, hasNotes) {
+    if (!hasNotes) return '<span style="color:#999">–</span>';
+    const pct = Math.max(0, Math.min(100, (avg / 20) * 100));
+    const color = avg >= 16 ? "#28a745" : avg >= 12 ? "#ffc107" : "#dc3545";
+    const cls = avg >= 16 ? "grade-good" : avg >= 12 ? "grade-medium" : "grade-bad";
+    return '<span class="avg-val ' + cls + '">' + avg.toFixed(2) + '</span>' +
+      '<span class="avg-bar"><span style="width:' + pct.toFixed(1) + '%;background:' + color + '"></span></span>';
+  }
 
-    // Ligne pour le tableau scrollable (Devoirs)
-    const assignmentsRow = document.createElement("tr");
-    let totalWeightedGrade = 0;
-    let totalCoefficient = 0;
-
-    allAssignments.forEach((assignment, assignIndex) => {
-      const gradeCell = document.createElement("td");
-      gradeCell.className = "grade-cell editable";
-      gradeCell.setAttribute("data-tooltip", assignment);
-      gradeCell.setAttribute("data-pupil-id", pupilId);
-      gradeCell.setAttribute("data-assignment", assignment);
-      gradeCell.setAttribute("data-assignment-index", assignIndex);
-
-      if (pupilGradesMap[assignment] && pupilGradesMap[assignment].length > 0) {
-        const gradesForSubject = pupilGradesMap[assignment];
-        const firstGrade = gradesForSubject[0];
-
-        // Vérifier si c'est une valeur spéciale
-        const specialValue = (firstGrade.isSpecial && ["ABS", "NN", "NR"].includes(firstGrade.value)) ||
-                             ["ABS", "NN", "NR"].includes(String(firstGrade.value).toUpperCase());
-
-        if (specialValue) {
-          // Afficher la valeur spéciale directement
-          gradeCell.textContent = firstGrade.value;
-          gradeCell.classList.add("special-value");
-          gradeCell.classList.add(firstGrade.value); // Ajoute ABS, NN ou NR comme classe
-
-          // Gérer le calcul de la moyenne
-          if (firstGrade.value === "NR") {
-            // NR = 0, compté dans la moyenne
-            const numericValue = 0;
-            const coef = firstGrade.coefficient || 1;
-            totalWeightedGrade += numericValue * coef;
-            totalCoefficient += coef;
-          }
-          // ABS et NN ne sont pas comptés dans la moyenne (rien à ajouter)
-
-          gradeCell.onclick = (e) => {
-            e.stopPropagation();
-            openInlineEdit(pupilId, assignment, assignIndex, firstGrade.value, firstGrade.coefficient || 1);
-          };
-        } else {
-          // Note numérique normale
-          let subjectWeighted = 0;
-          let subjectCoef = 0;
-          gradesForSubject.forEach(g => {
-            const scaledGrade = (g.value / g.base) * 20;
-            subjectWeighted += scaledGrade * (g.coefficient || 1);
-            subjectCoef += (g.coefficient || 1);
-          });
-          const subjectAverage = subjectWeighted / subjectCoef;
-          gradeCell.textContent = subjectAverage.toFixed(2);
-          gradeCell.setAttribute("data-tooltip", assignment);
-          if (subjectAverage >= 16) gradeCell.classList.add("grade-good");
-          else if (subjectAverage >= 12) gradeCell.classList.add("grade-medium");
-          else gradeCell.classList.add("grade-bad");
-          totalWeightedGrade += subjectAverage * subjectCoef;
-          totalCoefficient += subjectCoef;
-          gradeCell.onclick = (e) => {
-            e.stopPropagation();
-            openInlineEdit(pupilId, assignment, assignIndex, subjectAverage, subjectCoef);
-          };
-        }
-      } else {
-        gradeCell.textContent = "-";
-        gradeCell.classList.add("empty-cell");
-        gradeCell.onclick = (e) => {
-          e.stopPropagation();
-          openInlineEdit(pupilId, assignment, assignIndex, null, 1);
-        };
+  function makeHeadRow(assignmentsInGroup, avgLabel) {
+    const tr = document.createElement("tr");
+    const thName = document.createElement("th");
+    thName.className = "col-left sortable";
+    thName.innerHTML = 'Élève <span class="sort-arrow"></span>';
+    thName.title = "Cliquer pour trier par nom";
+    thName.onclick = () => toggleGradesSort("name");
+    tr.appendChild(thName);
+    addResizer(thName);
+    assignmentsInGroup.forEach((assignment) => {
+      const th = document.createElement("th");
+      th.className = "assignment-header";
+      const subj = subjectByAssignment[assignment] || "";
+      if (subj) {
+        const dot = document.createElement("span");
+        dot.className = "subject-dot";
+        dot.style.background = subjectColor(subj);
+        th.appendChild(dot);
       }
-      assignmentsRow.appendChild(gradeCell);
+      const label = document.createElement("span");
+      label.className = "assignment-label";
+      label.textContent = assignment;
+      th.appendChild(label);
+      const coef = coefByAssignment[assignment];
+      if (coef && coef !== 1) {
+        const badge = document.createElement("span");
+        badge.className = "coef-badge";
+        badge.textContent = "×" + coef;
+        th.appendChild(badge);
+      }
+      th.setAttribute("data-tooltip", (subj ? subj + " — " : "") + assignment + " — cliquer pour gérer ce devoir");
+      const gi = assignmentMap[assignment];
+      th.onclick = (e) => { e.stopPropagation(); showAssignmentModal(gi, assignment); };
+      tr.appendChild(th);
+      addResizer(th);
     });
-    assignmentsBody.appendChild(assignmentsRow);
+    const thAvg = document.createElement("th");
+    thAvg.className = "col-right sortable";
+    thAvg.innerHTML = avgLabel + ' <span class="sort-arrow"></span>';
+    thAvg.title = "Cliquer pour trier par moyenne";
+    thAvg.onclick = () => toggleGradesSort("average");
+    tr.appendChild(thAvg);
+    return tr;
+  }
 
-    // Ligne pour le tableau de droite (Moyenne)
-    const pupilAverage = totalCoefficient > 0 ? totalWeightedGrade / totalCoefficient : 0;
-    const rightRow = document.createElement("tr");
-    const averageCell = document.createElement("td");
-    averageCell.className = "average-cell";
-    averageCell.textContent = pupilAverage.toFixed(2);
-    rightRow.appendChild(averageCell);
-    rightBody.appendChild(rightRow);
+  groups.forEach(groupKey => {
+    const groupAssignments = allAssignments.filter(a => (subjectByAssignment[a] || "") === groupKey);
+    if (groupAssignments.length === 0) return;
 
-    // Ajouter le clic pour sélectionner l'élève (sur toute la ligne des 3 tableaux)
-    const allRows = [leftRow, assignmentsRow, rightRow];
-    allRows.forEach(row => {
+    const block = document.createElement("div");
+    block.className = "subject-block";
+    block.dataset.subject = groupKey;
+
+    // Titre du bloc : pastille + nom + coef de la matière (éditable)
+    const head = document.createElement("div");
+    head.className = "subject-block-head";
+    const dot = document.createElement("span");
+    dot.className = "subject-dot";
+    dot.style.background = groupKey ? subjectColor(groupKey) : "#adb5bd";
+    head.appendChild(dot);
+    const nameEl = document.createElement("span");
+    nameEl.className = "subject-block-name";
+    nameEl.textContent = groupKey || "Sans matière";
+    head.appendChild(nameEl);
+    if (groupKey) {
+      const badge = document.createElement("span");
+      badge.className = "coef-badge subject-coef-badge";
+      badge.textContent = "coef ×" + (subjectCoefs[groupKey] || 1);
+      head.appendChild(badge);
+      const edit = document.createElement("button");
+      edit.className = "subject-coef-edit";
+      edit.textContent = "✎";
+      edit.title = "Modifier le coefficient de la matière";
+      edit.onclick = () => editSubjectCoef(groupKey);
+      head.appendChild(edit);
+    }
+    block.appendChild(head);
+
+    const table = document.createElement("table");
+    table.className = "grades-table";
+    const thead = document.createElement("thead");
+    thead.appendChild(makeHeadRow(groupAssignments, groupKey ? "Moy. " + groupKey : "Moy. gén."));
+    table.appendChild(thead);
+    const tbody = document.createElement("tbody");
+    const tfoot = document.createElement("tfoot");
+
+    const footW = groupAssignments.map(() => 0);
+    const footC = groupAssignments.map(() => 0);
+    const grpMc = groupKey ? (subjectCoefs[groupKey] || 1) : 1;
+    let grpTw = 0, grpTc = 0;
+
+    pupilIds.forEach(pupilId => {
+      const pupil = pupils[pupilId];
+      const st = statsByPupil[pupilId];
+      const row = document.createElement("tr");
+      if (data.currentPupil === pupilId) row.classList.add("selected");
+
+      const nameCell = document.createElement("td");
+      nameCell.className = "col-left pupil-name";
+      nameCell.innerHTML = escapeHtml(pupil.name) +
+        ' <span class="rename-btn" onclick="event.stopPropagation(); showRenamePupilModal(\'' + escapeJsStr(pupilId) + '\', \'' + escapeJsStr(pupil.name) + '\')" title="Renommer">&#9998;</span>';
+      row.appendChild(nameCell);
+
+      groupAssignments.forEach((assignment, i) => {
+        const td = document.createElement("td");
+        td.className = "grade-cell editable";
+        td.setAttribute("data-pupil-id", pupilId);
+        td.setAttribute("data-assignment", assignment);
+        td.setAttribute("data-assignment-index", assignmentMap[assignment]);
+        td.setAttribute("data-tooltip", assignment);
+        const ai = assignmentMap[assignment];
+        const list = (pupil.grades || []).filter(g => g.subject === assignment);
+        if (list.length === 0) {
+          td.textContent = "–";
+          td.classList.add("empty-cell");
+          td.onclick = (e) => { e.stopPropagation(); openInlineEdit(pupilId, assignment, ai, null, 1); };
+        } else {
+          const first = list[0];
+          const val = String(first.value).toUpperCase();
+          if (["ABS", "NN", "NR"].includes(val)) {
+            td.textContent = first.value;
+            td.classList.add("special-value", first.value);
+            td.onclick = (e) => { e.stopPropagation(); openInlineEdit(pupilId, assignment, ai, first.value, (coefByAssignment[assignment] || 1)); };
+            if (first.value === "NR") footC[i] += (first.coefficient || 1);
+          } else {
+            let sw = 0, sc = 0;
+            list.forEach(g => {
+              const scaled = (g.value / g.base) * 20;
+              sw += scaled * (g.coefficient || 1);
+              sc += (g.coefficient || 1);
+            });
+            const avg = sc > 0 ? sw / sc : 0;
+            td.textContent = avg.toFixed(2);
+            if (avg >= 16) td.classList.add("grade-good");
+            else if (avg >= 12) td.classList.add("grade-medium");
+            else td.classList.add("grade-bad");
+            td.onclick = (e) => { e.stopPropagation(); openInlineEdit(pupilId, assignment, ai, avg, sc); };
+            footW[i] += avg * sc; footC[i] += sc;
+          }
+        }
+        row.appendChild(td);
+      });
+
+      // Colonne droite : moyenne de la matière pour cet élève
+      const hasNotes = st.bySubject[groupKey] !== undefined;
+      const subjAvg = hasNotes ? st.bySubject[groupKey] : 0;
+      if (hasNotes) { grpTw += subjAvg * grpMc; grpTc += grpMc; }
+      const avgCell = document.createElement("td");
+      avgCell.className = "col-right average-cell";
+      avgCell.innerHTML = avgCellHtml(subjAvg, hasNotes);
+      row.appendChild(avgCell);
+
       row.style.cursor = "pointer";
       row.onclick = (e) => {
-        if (e.target.classList.contains("grade-cell") || e.target.classList.contains("empty-cell") || e.target.classList.contains("assignment-header")) return;
+        if (e.target.classList.contains("grade-cell") || e.target.classList.contains("empty-cell") || e.target.closest(".rename-btn")) return;
         selectPupilFromTable(pupilId);
       };
+
+      tbody.appendChild(row);
     });
 
-    rowIndex++;
-  }
-
-  // Synchroniser les hauteurs des lignes
-  setTimeout(syncTableRowHeights, 50);
-}
-
-// Rendre la liste des devoirs pour la gestion
-function renderAssignmentsList() {
-  if (!data.currentClass) return;
-
-  const currentClass = data.classes[data.currentClass];
-  const assignmentsList = document.getElementById("assignmentsList");
-
-  if (!currentClass.assignments || currentClass.assignments.length === 0) {
-    assignmentsList.innerHTML = '<p style="color:#999;text-align:center">Aucun devoir</p>';
-    return;
-  }
-
-  assignmentsList.innerHTML = "";
-
-  // Trier par date de creation (plus recents en premier)
-  const sortedAssignments = [...currentClass.assignments].sort((a, b) => {
-    const dateA = new Date(a.createdAt).getTime();
-    const dateB = new Date(b.createdAt).getTime();
-    return dateB - dateA;
-  });
-
-  sortedAssignments.forEach((assignment, index) => {
-    const item = document.createElement("div");
-    item.className = "assignment-item";
-    item.innerHTML = `
-      <span class="assignment-name">${assignment.name}</span>
-      <span class="assignment-actions">
-        <button class="action-btn" onclick="showAssignmentModal(${sortedAssignments.length - 1 - index}, '${assignment.name.replace(/'/g, "\\'")}')" title="Modifier">&#9998;</button>
-      </span>
-    `;
-    assignmentsList.appendChild(item);
-  });
-}
-
-function syncTableRowHeights() {
-  const leftRows = document.querySelectorAll("#pupilsFixedLeftBody tr");
-  const scrollRows = document.querySelectorAll("#pupilsAssignmentsBody tr");
-  const rightRows = document.querySelectorAll("#pupilsFixedRightBody tr");
-
-  const maxRows = Math.max(leftRows.length, scrollRows.length, rightRows.length);
-
-  for (let i = 0; i < maxRows; i++) {
-    const leftRow = leftRows[i];
-    const scrollRow = scrollRows[i];
-    const rightRow = rightRows[i];
-
-    if (leftRow && scrollRow && rightRow) {
-      const maxHeight = Math.max(
-        leftRow.offsetHeight,
-        scrollRow.offsetHeight,
-        rightRow.offsetHeight
-      );
-      leftRow.style.height = maxHeight + "px";
-      scrollRow.style.height = maxHeight + "px";
-      rightRow.style.height = maxHeight + "px";
+    // Pied du tableau : moyenne de classe par devoir + moyenne de la matière
+    if (pupilIds.length > 0) {
+      const frow = document.createElement("tr");
+      const fLabel = document.createElement("td");
+      fLabel.className = "col-left";
+      fLabel.textContent = "Moyenne classe";
+      frow.appendChild(fLabel);
+      groupAssignments.forEach((a, i) => {
+        const td = document.createElement("td");
+        if (footC[i] > 0) {
+          const v = footW[i] / footC[i];
+          td.textContent = v.toFixed(2);
+          td.classList.add(v >= 16 ? "grade-good" : v >= 12 ? "grade-medium" : "grade-bad");
+        } else { td.textContent = "–"; td.style.color = "#999"; }
+        frow.appendChild(td);
+      });
+      const fAvg = document.createElement("td");
+      fAvg.className = "col-right";
+      fAvg.innerHTML = avgCellHtml(grpTc > 0 ? grpTw / grpTc : 0, grpTc > 0);
+      frow.appendChild(fAvg);
+      tfoot.appendChild(frow);
     }
+
+    table.appendChild(tbody);
+    table.appendChild(tfoot);
+    block.appendChild(table);
+    container.appendChild(block);
+  });
+
+  // ---- Tableau récapitulatif : une colonne par matière + moyenne générale ----
+  if (pupilIds.length > 0 && groups.length > 0) {
+    const block = document.createElement("div");
+    block.className = "subject-block recap-block";
+    block.dataset.subject = recapKey;
+    const head = document.createElement("div");
+    head.className = "subject-block-head";
+    const nameEl = document.createElement("span");
+    nameEl.className = "subject-block-name";
+    nameEl.textContent = "Récapitulatif — moyennes pondérées par les coefficients des matières";
+    head.appendChild(nameEl);
+    block.appendChild(head);
+
+    const table = document.createElement("table");
+    table.className = "grades-table";
+    const thead = document.createElement("thead");
+    const htr = document.createElement("tr");
+    const thName = document.createElement("th");
+    thName.className = "col-left sortable";
+    thName.innerHTML = 'Élève <span class="sort-arrow"></span>';
+    thName.title = "Cliquer pour trier par nom";
+    thName.onclick = () => toggleGradesSort("name");
+    htr.appendChild(thName);
+    addResizer(thName);
+    groups.forEach(g => {
+      const th = document.createElement("th");
+      th.className = "subject-col-header";
+      const dot = document.createElement("span");
+      dot.className = "subject-dot";
+      dot.style.background = g ? subjectColor(g) : "#adb5bd";
+      th.appendChild(dot);
+      th.appendChild(document.createTextNode((g || "Sans matière") + (g ? " ×" + (subjectCoefs[g] || 1) : "")));
+      htr.appendChild(th);
+      addResizer(th);
+    });
+    const thAvg = document.createElement("th");
+    thAvg.className = "col-right sortable";
+    thAvg.innerHTML = 'Moyenne <span class="sort-arrow"></span>';
+    thAvg.title = "Cliquer pour trier par moyenne";
+    thAvg.onclick = () => toggleGradesSort("average");
+    htr.appendChild(thAvg);
+    thead.appendChild(htr);
+    table.appendChild(thead);
+
+    const tbody = document.createElement("tbody");
+    const tfoot = document.createElement("tfoot");
+    const colTotals = groups.map(() => ({ w: 0, c: 0 }));
+    let genTw = 0, genTc = 0;
+
+    pupilIds.forEach(pupilId => {
+      const pupil = pupils[pupilId];
+      const st = statsByPupil[pupilId];
+      const row = document.createElement("tr");
+      if (data.currentPupil === pupilId) row.classList.add("selected");
+      const nameCell = document.createElement("td");
+      nameCell.className = "col-left pupil-name";
+      nameCell.textContent = pupil.name;
+      row.appendChild(nameCell);
+      groups.forEach((g, gi) => {
+        const td = document.createElement("td");
+        td.className = "subject-avg-cell";
+        const has = st.bySubject[g] !== undefined;
+        const v = has ? st.bySubject[g] : 0;
+        if (has) { colTotals[gi].w += v; colTotals[gi].c += 1; }
+        td.innerHTML = avgCellHtml(v, has);
+        row.appendChild(td);
+      });
+      const avgCell = document.createElement("td");
+      avgCell.className = "col-right average-cell";
+      const hasGen = Object.keys(st.bySubject).length > 0;
+      avgCell.innerHTML = avgCellHtml(st.general, hasGen);
+      if (hasGen) { genTw += st.general; genTc += 1; }
+      row.appendChild(avgCell);
+      row.style.cursor = "pointer";
+      row.onclick = () => { selectPupilFromTable(pupilId); };
+      tbody.appendChild(row);
+    });
+
+    if (pupilIds.length > 0) {
+      const frow = document.createElement("tr");
+      const fLabel = document.createElement("td");
+      fLabel.className = "col-left";
+      fLabel.textContent = "Moyenne classe";
+      frow.appendChild(fLabel);
+      groups.forEach((g, gi) => {
+        const td = document.createElement("td");
+        if (colTotals[gi].c > 0) {
+          const v = colTotals[gi].w / colTotals[gi].c;
+          td.textContent = v.toFixed(2);
+          td.classList.add(v >= 16 ? "grade-good" : v >= 12 ? "grade-medium" : "grade-bad");
+        } else { td.textContent = "–"; td.style.color = "#999"; }
+        frow.appendChild(td);
+      });
+      const fAvg = document.createElement("td");
+      fAvg.className = "col-right";
+      fAvg.textContent = genTc > 0 ? (genTw / genTc).toFixed(2) : "–";
+      fAvg.style.fontWeight = "700";
+      frow.appendChild(fAvg);
+      tfoot.appendChild(frow);
+    }
+
+    table.appendChild(tbody);
+    table.appendChild(tfoot);
+    block.appendChild(table);
+    container.appendChild(block);
   }
+
+  // Flèches de tri sur tous les tableaux
+  document.querySelectorAll("#gradesTables th.sortable").forEach(th => {
+    const key = th.classList.contains("col-left") ? "name" : "average";
+    const arrow = th.querySelector(".sort-arrow");
+    if (arrow) arrow.textContent = (gradesSort.key === key) ? (gradesSort.dir === 1 ? "▲" : "▼") : "";
+  });
+
+  applySubjectTabVisibility();
+  renderSubjectsList();
+  updateScrollShadows(document.getElementById("gradesScroll"));
+}
+
+// Moyennes d'un élève par matière + moyenne générale pondérée par les coefs des matières.
+// onlyAssignments : liste de devoirs à prendre en compte (null = toutes les notes).
+function computePupilAverages(pupil, subjMap, subjectCoefs, onlyAssignments) {
+  const perSubj = {};
+  (pupil.grades || []).forEach(g => {
+    if (onlyAssignments && onlyAssignments.indexOf(g.subject) === -1) return;
+    const val = String(g.value).toUpperCase();
+    if (val === "ABS" || val === "NN") return;
+    const scaled = (val === "NR") ? 0 : (g.value / g.base) * 20;
+    const coef = g.coefficient || 1;
+    const subj = (subjMap && subjMap[g.subject] !== undefined) ? subjMap[g.subject] : "";
+    if (!perSubj[subj]) perSubj[subj] = { w: 0, c: 0 };
+    perSubj[subj].w += scaled * coef;
+    perSubj[subj].c += coef;
+  });
+  const bySubject = {};
+  let tw = 0, tc = 0;
+  for (const subj in perSubj) {
+    if (perSubj[subj].c <= 0) continue;
+    const avg = perSubj[subj].w / perSubj[subj].c;
+    bySubject[subj] = avg;
+    const mc = (subjectCoefs && subjectCoefs[subj]) || 1;
+    tw += avg * mc;
+    tc += mc;
+  }
+  return { bySubject: bySubject, general: tc > 0 ? tw / tc : 0, mc: tc };
+}
+
+// Modifier le coefficient d'une matière (appliqué à la moyenne générale)
+function editSubjectCoef(name) {
+  if (!data.currentClass) return;
+  const c = data.classes[data.currentClass];
+  if (!c.subjectCoefs) c.subjectCoefs = {};
+  const cur = c.subjectCoefs[name] || 1;
+  const input = prompt("Coefficient de la matière « " + name + " » (appliqué à la moyenne générale) :", String(cur));
+  if (input === null) return;
+  const v = parseFloat(String(input).replace(",", "."));
+  if (isNaN(v) || v <= 0) { showToast("Coefficient invalide (doit être > 0)", "error"); return; }
+  c.subjectCoefs[name] = v;
+  saveData();
+  renderPupils();
+  renderStats();
+  showToast("Coefficient de la matière mis à jour");
+}
+
+// ===== Utilitaires d'affichage des tableaux =====
+function escapeHtml(s) {
+  return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+function escapeJsStr(s) {
+  return String(s).replace(/\\/g, "\\\\").replace(/'/g, "\\'");
+}
+
+// Ombres intérieures indiquant qu'un conteneur de tableau peut encore scroller
+function updateScrollShadows(sc) {
+  if (!sc) return;
+  const parts = [];
+  if (sc.scrollLeft > 2) parts.push("inset 14px 0 14px -14px var(--shadow-strong)");
+  if (sc.scrollLeft < sc.scrollWidth - sc.clientWidth - 2) parts.push("inset -14px 0 14px -14px var(--shadow-strong)");
+  if (sc.scrollTop < sc.scrollHeight - sc.clientHeight - 2) parts.push("inset 0 -14px 14px -14px var(--shadow-strong)");
+  sc.style.boxShadow = parts.length ? parts.join(",") : "none";
+}
+function initScrollShadow(el) {
+  if (!el) return;
+  const f = () => updateScrollShadows(el);
+  el.addEventListener("scroll", f);
+  window.addEventListener("resize", f);
+  f();
+}
+
+// Surlignage de la colonne entière au survol dans les tableaux de notes
+function initGradesHover() {
+  const root = document.getElementById("gradesTables");
+  if (!root) return;
+  let lastTable = null, lastIdx = -1;
+  root.addEventListener("mouseover", (e) => {
+    const cell = e.target.closest("td,th");
+    if (!cell || !cell.parentElement) return;
+    const table = cell.closest("table");
+    if (!table) return;
+    if (table !== lastTable) {
+      if (lastTable) lastTable.querySelectorAll(".col-hover").forEach(c => c.classList.remove("col-hover"));
+      lastTable = table;
+      lastIdx = -1;
+    }
+    const idx = cell.cellIndex;
+    if (idx === lastIdx) return;
+    lastIdx = idx;
+    table.querySelectorAll(".col-hover").forEach(c => c.classList.remove("col-hover"));
+    table.querySelectorAll("tr").forEach(tr => {
+      const c = tr.cells[idx];
+      if (c) c.classList.add("col-hover");
+    });
+  });
+  root.addEventListener("mouseleave", () => {
+    if (lastTable) lastTable.querySelectorAll(".col-hover").forEach(c => c.classList.remove("col-hover"));
+    lastTable = null;
+    lastIdx = -1;
+  });
+}
+
+// Redimensionnement des colonnes par glisser-déposer sur le bord des en-têtes
+function addResizer(th) {
+  if (th.classList.contains("col-right")) return;
+  const handle = document.createElement("span");
+  handle.className = "col-resizer";
+  handle.title = "Glisser pour redimensionner la colonne";
+  handle.addEventListener("mousedown", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const startX = e.clientX;
+    const startW = th.offsetWidth;
+    const minW = th.classList.contains("col-left") ? 100 : 60;
+    function onMove(ev) {
+      const w = Math.max(minW, startW + ev.clientX - startX);
+      th.style.width = w + "px";
+      th.style.minWidth = w + "px";
+      th.style.maxWidth = w + "px";
+    }
+    function onUp() {
+      document.removeEventListener("mousemove", onMove);
+      document.removeEventListener("mouseup", onUp);
+    }
+    document.addEventListener("mousemove", onMove);
+    document.addEventListener("mouseup", onUp);
+  });
+  th.appendChild(handle);
+}
+
+// Mode d'affichage compact (persisté)
+function toggleCompact() {
+  const on = document.body.classList.toggle("compact");
+  localStorage.setItem("flowScoreCompact", on ? "1" : "0");
+  const b = document.getElementById("compactToggle");
+  if (b) b.textContent = on ? "Mode confort" : "Mode compact";
+  updateScrollShadows(document.getElementById("gradesScroll"));
+}
+function applyStoredCompact() {
+  // Mode compact par défaut ; "0" = l'utilisateur a explicitement choisi le mode confort
+  const compact = localStorage.getItem("flowScoreCompact") !== "0";
+  if (compact) {
+    document.body.classList.add("compact");
+    const b = document.getElementById("compactToggle");
+    if (b) b.textContent = "Mode confort";
+  }
+}
+
+// Tri de la grille de notes (par élève ou par moyenne)
+let gradesSort = { key: null, dir: 1 };
+// Onglet matière actuellement affiché (clé = nom de la matière, ou "__recap__")
+let activeSubjectTab = null;
+function toggleGradesSort(key) {
+  if (gradesSort.key === key) gradesSort.dir *= -1;
+  else { gradesSort.key = key; gradesSort.dir = 1; }
+  renderPupils();
+}
+
+// Affiche uniquement le bloc de l'onglet matière actif (sans re-render)
+function applySubjectTabVisibility() {
+  document.querySelectorAll("#gradesTables .subject-block").forEach(b => {
+    b.style.display = (b.dataset.subject === activeSubjectTab) ? "" : "none";
+  });
+  updateScrollShadows(document.getElementById("gradesScroll"));
+}
+
+// Export CSV de la grille (point-virgule + BOM UTF-8 pour Excel FR)
+function exportCSV() {
+  if (!data.currentClass || !data.classes[data.currentClass]) { showToast("Sélectionnez une classe d'abord", "error"); return; }
+  const currentClass = data.classes[data.currentClass];
+  const pupils = currentClass.pupils || {};
+  const assignments = (currentClass.assignments || [])
+    .slice()
+    .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+
+  const esc = v => '"' + String(v).replace(/"/g, '""') + '"';
+  const num = v => v.toFixed(2).replace(".", ",");
+  const lines = [["Élève", ...assignments.map(a => (a.subject ? a.subject + " · " : "") + a.name), "Moyenne"].map(esc).join(";")];
+
+  for (const pupilId in pupils) {
+    const pupil = pupils[pupilId];
+    const map = {};
+    (pupil.grades || []).forEach(g => {
+      const s = g.subject || "Non specifie";
+      if (!map[s]) map[s] = [];
+      map[s].push(g);
+    });
+    const row = [pupil.name];
+    assignments.forEach(obj => {
+      const a = obj.name;
+      const list = map[a];
+      if (list && list.length > 0) {
+        const first = list[0];
+        const val = String(first.value).toUpperCase();
+        if (["ABS", "NN", "NR"].includes(val)) {
+          row.push(first.value);
+        } else {
+          let sw = 0, sc = 0;
+          list.forEach(g => {
+            const scaled = (g.value / g.base) * 20;
+            sw += scaled * (g.coefficient || 1);
+            sc += (g.coefficient || 1);
+          });
+          row.push(sc > 0 ? num(sw / sc) : "");
+        }
+      } else {
+        row.push("");
+      }
+    });
+    // Moyenne générale pondérée par les coefficients des matières
+    const csvSubjMap = {};
+    assignments.forEach(obj => { csvSubjMap[obj.name] = obj.subject || ""; });
+    const avgs = computePupilAverages(pupil, csvSubjMap, currentClass.subjectCoefs || {}, assignments.map(o => o.name));
+    row.push(Object.keys(avgs.bySubject).length > 0 ? num(avgs.general) : "0,00");
+    lines.push(row.map(esc).join(";"));
+  }
+
+  const csv = "\uFEFF" + lines.join("\r\n");
+  const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "flowscore_" + currentClass.name.replace(/[^\w\-]+/g, "_") + ".csv";
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  showToast("CSV exporté");
 }
 
 function openInlineEdit(pupilId, assignment, assignIndex, currentGrade, currentCoef) {
@@ -1134,6 +1567,8 @@ function addAssignment() {
   if (!data.currentClass) { showToast("Selectionnez une classe d'abord", "error"); return; }
   const assignmentName = document.getElementById("newAssignmentName").value.trim();
   if (!assignmentName) { showToast("Nom du devoir requis", "error"); return; }
+  const subjectEl = document.getElementById("assignmentSubject");
+  const subject = subjectEl ? subjectEl.value : "";
 
   const currentClass = data.classes[data.currentClass];
   if (!currentClass.assignments) {
@@ -1146,15 +1581,124 @@ function addAssignment() {
     return;
   }
 
-  currentClass.assignments.push({ name: assignmentName, createdAt: new Date().toISOString() });
+  currentClass.assignments.push({ name: assignmentName, subject: subject, createdAt: new Date().toISOString() });
   document.getElementById("newAssignmentName").value = "";
 
-  // Afficher la section de gestion des devoirs
-  document.getElementById("assignmentsManagement").style.display = "block";
-  renderAssignmentsList();
   renderPupils();
   saveData();
   showToast("Devoir ajoute");
+}
+
+// ===== Gestion des matières =====
+function subjectColor(s) {
+  const palette = ["#40b3a2", "#e8a87c", "#c38d9d", "#a87cb0", "#6bc8c4", "#d49668", "#17a2b8", "#28a745", "#6f42c1", "#ffc107"];
+  let h = 0;
+  for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) >>> 0;
+  return palette[h % palette.length];
+}
+
+function currentSubjects() {
+  if (!data.currentClass || !data.classes[data.currentClass]) return [];
+  const c = data.classes[data.currentClass];
+  if (!c.subjects) c.subjects = [];
+  return c.subjects;
+}
+
+function fillSubjectSelect(sel) {
+  if (!sel) return;
+  const current = sel.value;
+  sel.innerHTML = '<option value="">— Sans matière —</option>';
+  currentSubjects().forEach(name => {
+    const o = document.createElement("option");
+    o.value = name;
+    o.textContent = name;
+    sel.appendChild(o);
+  });
+  if (current && currentSubjects().includes(current)) sel.value = current;
+}
+
+function renderSubjectsList() {
+  const list = document.getElementById("subjectsList");
+  if (!list) return;
+  const subjects = currentSubjects();
+  list.innerHTML = "";
+  if (subjects.length === 0) {
+    list.innerHTML = '<p style="color:#999;font-size:.9em">Aucune matière — ajoutez-en une ci-dessus</p>';
+  }
+  subjects.forEach(name => {
+    const chip = document.createElement("span");
+    chip.className = "subject-chip";
+    const dot = document.createElement("span");
+    dot.className = "dot";
+    dot.style.background = subjectColor(name);
+    chip.appendChild(dot);
+    const label = document.createElement("span");
+    label.textContent = name;
+    chip.appendChild(label);
+    const rename = document.createElement("button");
+    rename.textContent = "✎";
+    rename.title = "Renommer la matière";
+    rename.onclick = () => renameSubject(name);
+    chip.appendChild(rename);
+    const del = document.createElement("button");
+    del.textContent = "×";
+    del.title = "Supprimer la matière";
+    del.onclick = () => deleteSubject(name);
+    chip.appendChild(del);
+    list.appendChild(chip);
+  });
+  fillSubjectSelect(document.getElementById("assignmentSubject"));
+  fillSubjectSelect(document.getElementById("editAssignmentSubject"));
+}
+
+function addSubject() {
+  if (!data.currentClass) { showToast("Sélectionnez une classe d'abord", "error"); return; }
+  const name = document.getElementById("newSubjectName").value.trim();
+  if (!name) { showToast("Nom de matière requis", "error"); return; }
+  const subjects = currentSubjects();
+  if (subjects.includes(name)) { showToast("Cette matière existe déjà", "error"); return; }
+  subjects.push(name);
+  document.getElementById("newSubjectName").value = "";
+  saveData();
+  renderSubjectsList();
+  showToast("Matière ajoutée");
+}
+
+function deleteSubject(name) {
+  if (!data.currentClass) return;
+  const c = data.classes[data.currentClass];
+  // Devoirs rattachés à cette matière : demander confirmation en les listant
+  const affected = (c.assignments || []).filter(a => a.subject === name);
+  if (affected.length > 0) {
+    const liste = affected.map(a => "• " + a.name).join("\n");
+    if (!confirm("Supprimer la matière « " + name + " » ?\n\n" + affected.length + " devoir(s) associé(s) perdront leur matière :\n" + liste)) return;
+  }
+  c.subjects = (c.subjects || []).filter(s => s !== name);
+  if (c.subjectCoefs) delete c.subjectCoefs[name];
+  affected.forEach(a => { a.subject = ""; });
+  saveData();
+  renderPupils();
+  renderSubjectsList();
+  showToast("Matière supprimée");
+}
+
+function renameSubject(oldName) {
+  if (!data.currentClass) return;
+  const newName = prompt("Nouveau nom pour la matière « " + oldName + " » :", oldName);
+  if (!newName || !newName.trim() || newName.trim() === oldName) return;
+  const c = data.classes[data.currentClass];
+  const nn = newName.trim();
+  if ((c.subjects || []).includes(nn)) { showToast("Cette matière existe déjà", "error"); return; }
+  c.subjects = (c.subjects || []).map(s => s === oldName ? nn : s);
+  if (c.subjectCoefs && c.subjectCoefs[oldName] !== undefined) {
+    c.subjectCoefs[nn] = c.subjectCoefs[oldName];
+    delete c.subjectCoefs[oldName];
+  }
+  (c.assignments || []).forEach(a => { if (a.subject === oldName) a.subject = nn; });
+  saveData();
+  renderPupils();
+  renderSubjectsList();
+  showToast("Matière renommée");
 }
 
 function showAssignmentModal(index, assignmentName) {
@@ -1172,6 +1716,8 @@ function showAssignmentModal(index, assignmentName) {
 
   document.getElementById("editAssignmentId").value = actualIndex;
   document.getElementById("editAssignmentName").value = assignment.name;
+  fillSubjectSelect(document.getElementById("editAssignmentSubject"));
+  document.getElementById("editAssignmentSubject").value = assignment.subject || "";
 
   // Trouver le coefficient actuel (à partir de la première note trouvée pour ce devoir)
   const pupils = currentClass.pupils || {};
@@ -1232,6 +1778,13 @@ function saveAssignmentEdit() {
   const oldName = oldAssignment.name;
   oldAssignment.name = newName;
 
+  // Mettre à jour la matière du devoir
+  const newSubject = (document.getElementById("editAssignmentSubject").value || "");
+  oldAssignment.subject = newSubject;
+  if (newSubject && currentClass.subjects && !currentClass.subjects.includes(newSubject)) {
+    currentClass.subjects.push(newSubject);
+  }
+
   // Mettre à jour toutes les notes des élèves qui référencent ce devoir
   const pupils = currentClass.pupils || {};
   for (const pupilId in pupils) {
@@ -1246,12 +1799,9 @@ function saveAssignmentEdit() {
   }
 
   closeAssignmentModal();
-  renderAssignmentsList();
   renderPupils();
   renderStats();
-  saveData();
-  renderPupils();
-  renderStats();
+  renderSubjectsList();
   saveData();
   showToast("Devoir mis a jour");
 }
@@ -1284,23 +1834,26 @@ function deleteAssignmentConfirm() {
 
   closeAssignmentModal();
 
-  // Vérifier s'il reste des devoirs
-  if (currentClass.assignments.length === 0) {
-    document.getElementById("assignmentsManagement").style.display = "none";
-  }
-
-  renderAssignmentsList();
   renderPupils();
   renderStats();
   saveData();
   showToast("Devoir supprime");
 }
 
+// État de tri du tableau de statistiques
+let statsSort = { key: null, dir: 1 };
+
+function toggleStatsSort(key) {
+  if (statsSort.key === key) statsSort.dir *= -1;
+  else { statsSort.key = key; statsSort.dir = (key === "name") ? 1 : -1; }
+  renderStats();
+}
+
 function renderStats() {
   const noStats = document.getElementById("noStats");
   const statsData = document.getElementById("statsData");
 
-  if (!data.currentClass) {
+  if (!data.currentClass || !data.classes[data.currentClass]) {
     noStats.style.display = "block";
     statsData.style.display = "none";
     return;
@@ -1309,126 +1862,119 @@ function renderStats() {
   noStats.style.display = "none";
   statsData.style.display = "block";
   const currentClass = data.classes[data.currentClass];
-
-  if (!currentClass) {
-    noStats.style.display = "block";
-    statsData.style.display = "none";
-    return;
-  }
-
   document.getElementById("statsClassName").textContent = "Statistiques - " + currentClass.name;
   const pupils = currentClass.pupils || {};
-  const pupilsCount = Object.keys(pupils).length;
-  document.getElementById("pupilsCount").textContent = pupilsCount;
+  document.getElementById("pupilsCount").textContent = Object.keys(pupils).length;
+  const subjMap = {};
+  (currentClass.assignments || []).forEach(a => { subjMap[a.name] = a.subject || ""; });
+  const subjectCoefs = currentClass.subjectCoefs || {};
+
+  // Flèches de tri dans les en-têtes
+  document.querySelectorAll("#classStatsTable th.sortable").forEach(th => {
+    const arrow = th.querySelector(".sort-arrow");
+    if (arrow) arrow.textContent = (statsSort.key === th.dataset.key) ? (statsSort.dir === 1 ? "▲" : "▼") : "";
+  });
 
   let allGradesCount = 0;
   let classTotalWeighted = 0;
   let classTotalCoef = 0;
-  const statsTableBody = document.getElementById("classStatsTableBody");
-  statsTableBody.innerHTML = "";
+  const rows = [];
 
   for (const pupilId in pupils) {
     const pupil = pupils[pupilId];
 
     if (pupil.grades) {
-      // Compter uniquement les notes numériques (pas ABS, NN, NR)
-      allGradesCount += pupil.grades.filter(g => {
-        const val = String(g.value).toUpperCase();
-        return !["ABS", "NN", "NR"].includes(val);
-      }).length;
+      allGradesCount += pupil.grades.filter(g => !["ABS", "NN", "NR"].includes(String(g.value).toUpperCase())).length;
     }
 
-    let pupilTotalWeighted = 0;
-    let pupilTotalCoef = 0;
-    let pupilBest = null;
-    let pupilWorst = null;
-    let hasValidGrades = false;
+    let pupilBest = null, pupilWorst = null;
 
     if (pupil.grades && pupil.grades.length > 0) {
       pupil.grades.forEach(grade => {
         const val = String(grade.value).toUpperCase();
-
-        // Gérer les valeurs spéciales
-        if (val === "ABS" || val === "NN") {
-          // Ignorer ABS et NN dans les calculs
-          return;
-        }
-
-        if (val === "NR") {
-          // NR = 0
-          const numericValue = 0;
-          const coef = grade.coefficient || 1;
-          pupilTotalWeighted += numericValue * coef;
-          pupilTotalCoef += coef;
-          hasValidGrades = true;
-          if (pupilBest === null || numericValue > pupilBest) pupilBest = numericValue;
-          if (pupilWorst === null || numericValue < pupilWorst) pupilWorst = numericValue;
-          return;
-        }
-
-        // Note numérique normale
-        const scaledGrade = (grade.value / grade.base) * 20;
-        const coef = grade.coefficient || 1;
-        pupilTotalWeighted += scaledGrade * coef;
-        pupilTotalCoef += coef;
-        hasValidGrades = true;
-
-        if (pupilBest === null || scaledGrade > pupilBest) pupilBest = scaledGrade;
-        if (pupilWorst === null || scaledGrade < pupilWorst) pupilWorst = scaledGrade;
+        if (val === "ABS" || val === "NN") return;
+        const scaled = (val === "NR") ? 0 : (grade.value / grade.base) * 20;
+        if (pupilBest === null || scaled > pupilBest) pupilBest = scaled;
+        if (pupilWorst === null || scaled < pupilWorst) pupilWorst = scaled;
       });
-
-      const pupilAvg = pupilTotalCoef > 0 ? pupilTotalWeighted / pupilTotalCoef : 0;
-      classTotalWeighted += pupilAvg * pupilTotalCoef;
-      classTotalCoef += pupilTotalCoef;
     }
 
+    // Moyenne générale pondérée par les coefficients des matières
+    const avgs = computePupilAverages(pupil, subjMap, subjectCoefs, null);
+    const pupilAvg = avgs.general;
+    classTotalWeighted += pupilAvg * avgs.mc;
+    classTotalCoef += avgs.mc;
+
+    rows.push({
+      name: pupil.name,
+      avg: pupilAvg,
+      count: pupil.grades ? pupil.grades.length : 0,
+      best: pupilBest,
+      worst: pupilWorst
+    });
+  }
+
+  // Tri des lignes
+  if (statsSort.key) {
+    const k = statsSort.key;
+    rows.sort((a, b) => {
+      let cmp = 0;
+      if (k === "name") cmp = a.name.localeCompare(b.name, "fr");
+      else if (k === "avg") cmp = a.avg - b.avg;
+      else if (k === "count") cmp = a.count - b.count;
+      else if (k === "best") cmp = (a.best === null ? -1 : a.best) - (b.best === null ? -1 : b.best);
+      else if (k === "worst") cmp = (a.worst === null ? 999 : a.worst) - (b.worst === null ? 999 : b.worst);
+      return cmp * statsSort.dir;
+    });
+  }
+
+  const statsTableBody = document.getElementById("classStatsTableBody");
+  statsTableBody.innerHTML = "";
+
+  rows.forEach(r => {
     const row = document.createElement("tr");
+
     const nameCell = document.createElement("td");
-    nameCell.textContent = pupil.name;
+    nameCell.textContent = r.name;
     row.appendChild(nameCell);
 
+    // Moyenne avec mini-barre de progression colorée
     const avgCell = document.createElement("td");
-    if (pupilTotalCoef > 0) {
-      const pupilAvg = pupilTotalWeighted / pupilTotalCoef;
-      avgCell.textContent = pupilAvg.toFixed(2);
-      if (pupilAvg >= 16) avgCell.classList.add("grade-good");
-      else if (pupilAvg >= 12) avgCell.classList.add("grade-medium");
-      else avgCell.classList.add("grade-bad");
-    } else {
-      avgCell.textContent = "0.00";
-    }
+    const pct = Math.max(0, Math.min(100, (r.avg / 20) * 100));
+    const color = r.avg >= 16 ? "#28a745" : r.avg >= 12 ? "#ffc107" : "#dc3545";
+    const cls = r.avg >= 16 ? "grade-good" : r.avg >= 12 ? "grade-medium" : "grade-bad";
+    avgCell.innerHTML = '<span class="' + cls + '">' + r.avg.toFixed(2) + '</span>' +
+      '<span class="avg-bar"><span style="width:' + pct.toFixed(1) + '%;background:' + color + '"></span></span>';
     row.appendChild(avgCell);
 
     const countCell = document.createElement("td");
-    countCell.textContent = pupil.grades ? pupil.grades.length : 0;
+    countCell.textContent = r.count;
     row.appendChild(countCell);
 
     const bestCell = document.createElement("td");
-    bestCell.textContent = pupilBest !== null ? pupilBest.toFixed(2) : "-";
+    bestCell.textContent = r.best !== null ? r.best.toFixed(2) : "-";
+    if (r.best !== null && r.best >= 16) bestCell.classList.add("grade-good");
     row.appendChild(bestCell);
 
     const worstCell = document.createElement("td");
-    worstCell.textContent = pupilWorst !== null ? pupilWorst.toFixed(2) : "-";
+    worstCell.textContent = r.worst !== null ? r.worst.toFixed(2) : "-";
+    if (r.worst !== null && r.worst < 10) worstCell.classList.add("grade-bad");
     row.appendChild(worstCell);
 
     statsTableBody.appendChild(row);
-  }
+  });
 
   document.getElementById("totalGrades").textContent = allGradesCount;
+  document.getElementById("classAverage").textContent = classTotalCoef > 0 ? (classTotalWeighted / classTotalCoef).toFixed(2) : "0.00";
 
-  if (classTotalCoef > 0) {
-    const classAverage = classTotalWeighted / classTotalCoef;
-    document.getElementById("classAverage").textContent = classAverage.toFixed(2);
-  } else {
-    document.getElementById("classAverage").textContent = "0.00";
-  }
+  updateScrollShadows(document.querySelector("#statsTab .table-container"));
 }
 
 function addClass() {
   const className = document.getElementById("newClassName").value.trim();
   if (!className) { showToast("Nom de classe requis", "error"); return; }
   if (data.classes[className]) { showToast("Classe existe deja", "error"); return; }
-  data.classes[className] = { name: className, pupils: {}, assignments: [] };
+  data.classes[className] = { name: className, pupils: {}, assignments: [], subjects: [], subjectCoefs: {} };
   document.getElementById("newClassName").value = "";
   updatePeriodFilterOptions();
   renderClasses();
@@ -1440,7 +1986,8 @@ const INTERNSHIP_STATUSES = {
   none: "Sans recherche",
   active: "Recherche active",
   difficulty: "En difficulté",
-  found: "Stage trouvé"
+  found: "Stage trouvé",
+  maladie: "Arrêt maladie"
 };
 
 function renderStage() {
@@ -1462,7 +2009,7 @@ function renderStage() {
   const tbody = document.getElementById("stageTableBody");
   tbody.innerHTML = "";
 
-  const counts = { none: 0, active: 0, difficulty: 0, found: 0, convention: 0 };
+  const counts = { none: 0, active: 0, difficulty: 0, found: 0, maladie: 0, convention: 0 };
 
   for (const pupilId in pupils) {
     const pupil = pupils[pupilId];
@@ -1474,6 +2021,7 @@ function renderStage() {
     if (internship.convention) counts.convention++;
 
     const row = document.createElement("tr");
+    row.className = "status-" + internship.status;
 
     const nameCell = document.createElement("td");
     nameCell.className = "pupil-cell";
@@ -1486,7 +2034,8 @@ function renderStage() {
       '<option value="none">Sans recherche</option>' +
       '<option value="active">Recherche active</option>' +
       '<option value="difficulty">En difficulté</option>' +
-      '<option value="found">Stage trouvé</option>';
+      '<option value="found">Stage trouvé</option>' +
+      '<option value="maladie">Arrêt maladie</option>';
     select.value = internship.status;
     select.onchange = () => updateInternshipStatus(pupilId, select.value);
     statusCell.appendChild(select);
@@ -1534,6 +2083,7 @@ function renderStage() {
     { key: "difficulty", label: "En difficulté", count: counts.difficulty },
     { key: "none", label: "Sans recherche", count: counts.none },
     { key: "found", label: "Stage trouvé", count: counts.found },
+    { key: "maladie", label: "Arrêt maladie", count: counts.maladie },
     { key: "convention", label: "Convention signée", count: counts.convention }
   ];
   summaryCards.forEach(card => {
@@ -1605,7 +2155,9 @@ function copyClass(sourceClassId, newClassName, copyAssignments) {
   const newClass = {
     name: newClassName,
     pupils: {},
-    assignments: copyAssignments ? [...sourceClass.assignments] : []
+    assignments: copyAssignments ? (sourceClass.assignments || []).map(a => ({ name: a.name, subject: a.subject || "", createdAt: a.createdAt })) : [],
+    subjects: [...(sourceClass.subjects || [])],
+    subjectCoefs: Object.assign({}, sourceClass.subjectCoefs || {})
   };
 
   // Copier chaque eleve sans ses notes
@@ -1712,6 +2264,13 @@ function importJSONFile() {
           if (!importedData.classes[classId].assignments) {
             importedData.classes[classId].assignments = [];
           }
+          if (!importedData.classes[classId].subjects) {
+            importedData.classes[classId].subjects = [];
+          }
+          if (!importedData.classes[classId].subjectCoefs) {
+            importedData.classes[classId].subjectCoefs = {};
+          }
+          importedData.classes[classId].assignments.forEach(a => { if (a.subject === undefined) a.subject = ""; });
         }
         data = importedData;
         closeImportModal();
@@ -1773,10 +2332,10 @@ function printPupilsTable() {
   if (!data.currentClass || !data.classes[data.currentClass]) { showToast("Sélectionnez une classe d'abord", "error"); return; }
   const currentClass = data.classes[data.currentClass];
   const pupils = currentClass.pupils || {};
-  const assignments = (currentClass.assignments || []).map(a => a.name);
+  const assignments = (currentClass.assignments || []).slice().sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
 
   let headCells = '<th class="pupil-col">Élève</th>';
-  assignments.forEach((a, i) => { headCells += `<th title="${a}">Note ${i + 1}</th>`; });
+  assignments.forEach((a, i) => { const full = (a.subject ? a.subject + " — " : "") + a.name; const short = full.length > 16 ? full.slice(0, 15) + "…" : full; headCells += `<th title="${full}">${short}</th>`; });
   headCells += '<th>Moyenne</th>';
 
   let bodyRows = "";
@@ -1790,9 +2349,11 @@ function printPupilsTable() {
     });
 
     let row = `<td class="pupil-cell">${pupil.name}</td>`;
-    let totalWeighted = 0, totalCoef = 0;
+    const printSubjMap = {};
+    assignments.forEach(a => { printSubjMap[a.name] = a.subject || ""; });
 
-    assignments.forEach(assignment => {
+    assignments.forEach(a => {
+      const assignment = a.name;
       const grades = gradesMap[assignment];
       if (grades && grades.length > 0) {
         const first = grades[0];
@@ -1800,8 +2361,7 @@ function printPupilsTable() {
         if (["ABS", "NN", "NR"].includes(val)) {
           row += `<td class="special">${first.value}</td>`;
           if (val === "NR") {
-            const coef = first.coefficient || 1;
-            totalWeighted += 0; totalCoef += coef;
+            // NR = 0, pris en compte dans la moyenne par computePupilAverages
           }
         } else {
           let sw = 0, sc = 0;
@@ -1813,14 +2373,13 @@ function printPupilsTable() {
           const avg = sw / sc;
           const cls = avg >= 16 ? "grade-good" : avg >= 12 ? "grade-medium" : "grade-bad";
           row += `<td class="${cls}">${avg.toFixed(2)}</td>`;
-          totalWeighted += avg * sc; totalCoef += sc;
         }
       } else {
         row += `<td>-</td>`;
       }
     });
 
-    const pupilAvg = totalCoef > 0 ? totalWeighted / totalCoef : 0;
+    const pupilAvg = computePupilAverages(pupil, printSubjMap, currentClass.subjectCoefs || {}, assignments.map(a => a.name)).general;
     row += `<td class="avg">${pupilAvg.toFixed(2)}</td>`;
     bodyRows += `<tr>${row}</tr>`;
   }
@@ -1836,7 +2395,7 @@ function printStageTable() {
   if (!data.currentClass || !data.classes[data.currentClass]) { showToast("Sélectionnez une classe d'abord", "error"); return; }
   const currentClass = data.classes[data.currentClass];
   const pupils = currentClass.pupils || {};
-  const statusLabels = { none: "Sans recherche", active: "Recherche active", difficulty: "En difficulté", found: "Stage trouvé" };
+  const statusLabels = { none: "Sans recherche", active: "Recherche active", difficulty: "En difficulté", found: "Stage trouvé", maladie: "Arrêt maladie" };
 
   const headCells = '<th class="pupil-col">Élève</th><th>Recherche</th><th>Convention</th><th>Commentaire de suivi</th>';
   let bodyRows = "";
@@ -1877,12 +2436,14 @@ function exportJSON() {
 // Initialize
 document.addEventListener("DOMContentLoaded", function() {
   loadData();
+  applyStoredCompact();
   updatePeriodFilterOptions();
   renderClasses();
   renderPupils();
   renderStats();
   renderStage();
-  setTimeout(syncTableRowHeights, 100);
+  initGradesHover();
+  document.querySelectorAll(".table-scroll, .table-container").forEach(initScrollShadow);
 });
 
 // File input change handler
@@ -1898,7 +2459,7 @@ document.getElementById("fileInput").addEventListener("change", function(e) {
 });
 </script>
 <footer style="position: fixed; bottom: 0; left: 0; width: 100%; text-align: center; padding: 15px; color: var(--text-muted); font-size: 0.9em; border-top: 1px solid var(--border); background: var(--footer-bg); z-index: 100; transition: background .4s, color .4s;">
-  Développé par B.Dupont - Licence AGPLv3 - Version 1.0.3.a<br>
+  Développé par B.Dupont - Licence AGPLv3 - Version 1.1.0<br>
 </footer>
 </body>
 </html>
