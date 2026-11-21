@@ -46,9 +46,20 @@ accessibles et retours d'action (annulation, enregistrement).
 
 ### Modifié
 
-- **Identité visuelle** entièrement revue : palette teal / ambre, jetons de
-  couleur clair et sombre, typographie hiérarchisée, cartes, rayons et ombres
-  cohérents, écrans vides illustrés.
+- **Identité visuelle** entièrement revue en conservant le **code couleur
+  historique** : teal `#40b3a2`, menthe `#85cdca`, saumon `#e8a87c`, mauve
+  `#c38d9d` / `#a87cb0` sur une brume claire, nuit bleutée `#1a1f2e` en thème
+  sombre. Typographie hiérarchisée, cartes, rayons et ombres cohérents,
+  écrans vides illustrés.
+- **Icône d'origine restaurée** (`build/icon.png`, « FS » dégradé teal →
+  saumon) dans l'en-tête de l'application et sur les écrans vides, et déclarée
+  comme `apple-touch-icon`.
+- **Palette des matières** reprise à l'identique de la 1.1.0 (mêmes couleurs
+  pour une matière donnée) : pastilles, onglets et barres statistiques.
+- **Aplats teal lisibles** : boutons et segments actifs gardent la teinte
+  d'origine mais passent en encre foncée (contraste ≥ 4,5:1) ; les couleurs de
+  notes (excellent / bien / moyen / faible) sont assombries pour rester
+  lisibles sur fond clair comme sur fond sombre.
 - **Codes couleur des moyennes** unifiés sur 4 niveaux (≥ 16 excellent,
   ≥ 12 bien, ≥ 10 moyen, < 10 faible) dans les fiches, la grille, les
   statistiques et les impressions.
