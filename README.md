@@ -2,19 +2,20 @@
 
 **Flow-Score** est un gestionnaire de notes destiné aux enseignants. Il permet de gérer des classes, des élèves, des devoirs avec coefficients, de calculer les moyennes et de suivre les stages — le tout en local, sans serveur ni compte utilisateur.
 
-![Version](https://img.shields.io/badge/version-1.1.0-40b3a2) ![Plateformes](https://img.shields.io/badge/plateformes-Windows%20%7C%20Linux-e8a87c) ![Langue](https://img.shields.io/badge/langue-Fran%C3%A7ais-c38d9d) ![Licence](https://img.shields.io/badge/licence-GPL--3.0-blue)
+![Version](https://img.shields.io/badge/version-1.2.0-40b3a2) ![Plateformes](https://img.shields.io/badge/plateformes-Windows%20%7C%20Linux-e8a87c) ![Langue](https://img.shields.io/badge/langue-Fran%C3%A7ais-c38d9d) ![Licence](https://img.shields.io/badge/licence-GPL--3.0-blue)
 
 ## Fonctionnalités
 
-- **Classes** : création, duplication, renommage, suppression et filtrage par période
-- **Élèves** : ajout, renommage, suppression
-- **Devoirs** : ajout et modification, avec **coefficient** par devoir
-- **Notes** : saisie directe dans le tableau (édition en ligne), moyennes par élève et moyenne de classe
-- **Statistiques** : vue synthétique des moyennes de classe
-- **Stages** : suivi des stages des élèves (statut, commentaires, convention)
-- **Import / Export JSON** : sauvegarde et restauration complètes des données
+- **Classes** : création, duplication, renommage, suppression, recherche et filtrage par période
+- **Élèves** : ajout en série (un nom par ligne), renommage, suppression
+- **Matières et devoirs** : gestion par classe, **coefficients** par devoir et par matière
+- **Notes** : trois vues complémentaires — fiches élève, saisie par devoir et grille complète — avec ABS / NN / NR, barème 20 / 10 / 5 et enchaînement automatique d'un élève au suivant
+- **Statistiques** : moyenne de classe, moyenne par matière, répartition des moyennes et classement triable
+- **Stages** : statut de recherche, convention signée, commentaire de suivi et filtres par statut
+- **Import / Export** : sauvegarde JSON complète, import par fichier ou glisser-déposer, export CSV compatible Excel FR
 - **Impression** : tableau des notes et tableau des stages (mise en page dédiée)
-- **Thème clair / sombre** : suit le système, avec bascule manuelle persistante
+- **Confort** : thème Auto / Clair / Sombre, mode compact, annulation des suppressions, enregistrement automatique
+- **Mobile-first** : interface pensée pour le téléphone (navigation en bas, cibles tactiles, feuilles de saisie) et adaptée jusqu'aux grands écrans
 
 ## Stack technique
 
@@ -66,12 +67,12 @@ Les rapports de bugs et les propositions de fonctionnalités sont les bienvenus 
 consultez [CONTRIBUTING.md](CONTRIBUTING.md) et ouvrez une
 [issue](https://github.com/GitKernelDesign/FlowScore/issues).
 
-## Téléchargements (v1.1.0)
+## Téléchargements (v1.2.0)
 
 Les installateurs ne sont pas versionnés dans le dépôt (trop volumineux pour Git) — téléchargez-les depuis la page **[Releases](https://github.com/GitKernelDesign/FlowScore/releases)** :
 
 | Fichier | Plateforme |
 |---|---|
-| `Flow-Score-Setup-1.1.0.exe` | Windows — installateur |
-| `Flow-Score-Portable-1.1.0.exe` | Windows — portable, sans installation |
-| `Flow-Score-1.1.0.AppImage` | Linux — exécutable autonome |
+| `Flow-Score-Setup-1.2.0.exe` | Windows — installateur |
+| `Flow-Score-Portable-1.2.0.exe` | Windows — portable, sans installation |
+| `Flow-Score-1.2.0.AppImage` | Linux — exécutable autonome |

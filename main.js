@@ -43,11 +43,11 @@ if (!gotLock) {
     mainWindow = new BrowserWindow({
       width: 1280,
       height: 820,
-      minWidth: 760,
-      minHeight: 560,
+      minWidth: 360,
+      minHeight: 520,
       title: 'Flow-Score',
       icon: icon,
-      backgroundColor: '#f5f7fa',
+      backgroundColor: '#f1f5f8',
       autoHideMenuBar: true,
       webPreferences: {
         contextIsolation: true,

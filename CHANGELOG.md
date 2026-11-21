@@ -4,9 +4,74 @@ Toutes les évolutions notables de Flow-Score sont documentées dans ce fichier.
 Le format s'inspire de [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/)
 et le projet suit une versionnement [SemVer](https://semver.org/lang/fr/).
 
-## [1.1.0] — 2026-11-21
+## [1.2.0] — 2026-11-21
 
-Version actuelle.
+Version actuelle. **Refonte UX/UI mobile-first** : nouvelle coquille de
+navigation, trois vues de notes, feuille de saisie repensée, dialogues
+accessibles et retours d'action (annulation, enregistrement).
+
+### Ajouté
+
+- **Navigation mobile-first** : barre d'application compacte (classe active,
+  thème, données), onglets Notes / Stages / Stats, et **barre de navigation
+  fixe en bas** sur mobile (barre horizontale classique sur ordinateur).
+- **Trois vues de notes**, mémorisées d'une session à l'autre :
+  **Fiches élève** (cartes), **Par devoir** (saisie en liste) et **Grille**
+  (tableau complet).
+- **Feuille de saisie d'une note** : grand champ numérique, barème 20 / 10 / 5,
+  boutons ABS / NN / NR, aperçu converti sur 20, coefficient dans « Options
+  avancées », enchaînement **élève suivant / précédent** et suppression.
+- **Ajout d'élèves en série** : un nom par ligne (collage d'une liste complète),
+  doublons ignorés avec un récapitulatif.
+- **Dialogue « Mes classes »** : recherche, filtres par période avec compteurs,
+  création, renommage, duplication et suppression.
+- **Gestion des matières** dans un dialogue dédié (renommage, coefficient,
+  suppression avec confirmation listant les devoirs concernés).
+- **Gestion des devoirs** : nom, matière et coefficient dans un dialogue, avec
+  suppression et annulation.
+- **Stages** : cartes par élève, filtres par statut (dont « Convention à
+  signer »), bascule de convention, commentaire de suivi et recherche.
+- **Statistiques** : 4 indicateurs clés, moyenne par matière, répartition des
+  moyennes en 6 tranches et classement triable (moyenne ou nom).
+- **Annulation** : chaque suppression (note, élève, devoir, matière, classe,
+  import, réinitialisation) affiche un toast « Annuler » qui restaure l'état
+  précédent.
+- **Import JSON** par sélection de fichier ou glisser-déposer, avec résumé
+  (classes / élèves) et confirmation avant remplacement.
+- **Thème Auto / Clair / Sombre** et **mode compact** persistants, accessibles
+  depuis l'en-tête et le dialogue « Données & réglages ».
+- **Accessibilité** : cibles tactiles de 44 px, focus visibles, libellés
+  `aria`, états `aria-pressed`, textes réservés aux lecteurs d'écran,
+  dialogues natifs et respect de `prefers-reduced-motion`.
+
+### Modifié
+
+- **Identité visuelle** entièrement revue : palette teal / ambre, jetons de
+  couleur clair et sombre, typographie hiérarchisée, cartes, rayons et ombres
+  cohérents, écrans vides illustrés.
+- **Codes couleur des moyennes** unifiés sur 4 niveaux (≥ 16 excellent,
+  ≥ 12 bien, ≥ 10 moyen, < 10 faible) dans les fiches, la grille, les
+  statistiques et les impressions.
+- **Grille de notes** : un tableau par matière + un récapitulatif, en-tête et
+  colonne des noms gelés, colonnes redimensionnables, libellés de devoirs sur
+  deux lignes sur mobile, moyenne non gelée sous 560 px pour libérer la largeur.
+- **Documents imprimés** (notes et stages) alignés sur la nouvelle grille et
+  les nouveaux libellés.
+- **Fenêtre Electron** : taille minimale ramenée à 360 × 520 px et fond
+  d'ouverture `#f1f5f8`, en phase avec l'interface.
+
+### Corrigé
+
+- Histogramme des statistiques : les barres ont de nouveau une hauteur
+  proportionnelle aux effectifs.
+- Pied de la fiche de note qui débordait sur les écrans de 320 à 360 px
+  (bouton « Enregistrer » désormais toujours visible, suppression en icône).
+- Champ de recherche qui s'étirait verticalement dans les dialogues.
+- Segments actifs peu lisibles, pastilles de matière redondantes et titres
+  dupliqués dans les vues.
+- En-têtes de la grille tronqués sur ordinateur.
+
+## [1.1.0] — 2026-11-21
 
 ### Ajouté
 
