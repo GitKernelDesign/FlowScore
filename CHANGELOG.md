@@ -46,19 +46,24 @@ accessibles et retours d'action (annulation, enregistrement).
 
 ### Modifié
 
-- **Identité visuelle** entièrement revue en conservant le **code couleur
-  historique** : teal `#40b3a2`, menthe `#85cdca`, saumon `#e8a87c`, mauve
-  `#c38d9d` / `#a87cb0` sur une brume claire, nuit bleutée `#1a1f2e` en thème
-  sombre. Typographie hiérarchisée, cartes, rayons et ombres cohérents,
-  écrans vides illustrés.
+- **Identité visuelle** : reprise du **code couleur de la version d'origine**
+  (teal `#40b3a2`, menthe `#85cdca`, saumon `#e8a87c`, mauve `#c38d9d` /
+  `#a87cb0`) avec ses dégradés exacts — fond de page `#f5f7fa → #c3cfe2`
+  (nuit `#1a1f2e → #0f1219` en sombre), **bandeau de classe teal → saumon**
+  rappelant l'ancien en-tête, **en-têtes de grille** teal (noms), menthe
+  (devoirs) et mauve (moyennes), et **indicateurs** pastillés des quatre
+  dégradés.
+- **Teintes pleines d'origine** pour les éléments graphiques : barres et
+  histogrammes (`#28a745`, `#ffc107`, `#dc3545`), pastilles et statuts de
+  stage (`#17a2b8`, `#6f42c1`), interrupteurs et pastilles de matière.
 - **Icône d'origine restaurée** (`build/icon.png`, « FS » dégradé teal →
   saumon) dans l'en-tête de l'application et sur les écrans vides, et déclarée
   comme `apple-touch-icon`.
 - **Palette des matières** reprise à l'identique de la 1.1.0 (mêmes couleurs
   pour une matière donnée) : pastilles, onglets et barres statistiques.
-- **Aplats teal lisibles** : boutons et segments actifs gardent la teinte
-  d'origine mais passent en encre foncée (contraste ≥ 4,5:1) ; les couleurs de
-  notes (excellent / bien / moyen / faible) sont assombries pour rester
+- **Contrastes tenus malgré les aplats** : encres foncées posées sur les
+  teintes teal, saumon et mauve (≥ 4,5:1) ; pour le texte des notes, seuls le
+  vert et l'ambre sont assombris (`#1e7e34`, `#a16207`) afin de rester
   lisibles sur fond clair comme sur fond sombre.
 - **Codes couleur des moyennes** unifiés sur 4 niveaux (≥ 16 excellent,
   ≥ 12 bien, ≥ 10 moyen, < 10 faible) dans les fiches, la grille, les
